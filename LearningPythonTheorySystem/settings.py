@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-+5(942r=svud!2i+83=sls+i17qp=#(r^m5np-ddvvz5sjb#d7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
+
 ALLOWED_HOSTS = []
 
 
@@ -117,3 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+AUTH_USER_MODEL = 'learning_user.LearningUser'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
