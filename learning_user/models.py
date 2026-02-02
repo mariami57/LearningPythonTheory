@@ -15,7 +15,7 @@ class LearningUser(AbstractBaseUser, PermissionsMixin):
     objects = LearningUserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELD = ['email']
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
@@ -23,8 +23,8 @@ class LearningUser(AbstractBaseUser, PermissionsMixin):
 
 class UserProfile(models.Model):
     learning_user = models.OneToOneField(LearningUser, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
 
 
     @property

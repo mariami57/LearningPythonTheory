@@ -32,7 +32,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+PROJECT_APPS = [
+    'learning_user'
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'learning_user'
-]
+    'rest_framework',
+] + PROJECT_APPS
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
