@@ -14,7 +14,7 @@ class Question(models.Model):
         (CLOSED, 'Closed'),
     ]
 
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='questions')
     text = models.TextField()
     question_type = models.CharField(choices=QUESTION_TYPES, max_length=10)
     difficulty = models.IntegerField(default=1)
