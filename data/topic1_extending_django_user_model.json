@@ -1,0 +1,128 @@
+{
+  "topic_id": 1,
+  "questions": [
+    {
+      "text": "Do we need to create a custom UserManager?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Yes, if we have created our own CustomUserModel", "is_correct": true },
+        { "text": "Not necessarily, even if we have created our own CustomUserModel", "is_correct": false }
+      ]
+    },
+    {
+      "text": "How do we create a custom UserManager?",
+      "question_type": "closed",
+      "difficulty": 2,
+      "choices": [
+        { "text": "Setting up a managers.py file", "is_correct": false },
+        { "text": "Creating a class that inherits BaseUserManager", "is_correct": false },
+        { "text": "Getting the needed methods from django.contrib.auth.models class UserManager", "is_correct": false },
+        { "text": "Adding the manager to the custom user model as an objects variable", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+      ]
+    },
+    {
+      "text": "Why do we need to inherit PermissionsMixin in the CustomUserModel?",
+      "question_type": "closed",
+      "difficulty": 2,
+      "choices": [
+        { "text": "Because it gives us permissions to do whatever we want with the user.", "is_correct": false },
+        { "text": "Because that way the user can do whatever they want with their profile.", "is_correct": false },
+        { "text": "Because it provides us with the settings for creating a superuser, adding them to groups and choosing their permissions.", "is_correct": true },
+        { "text": "Because it gives the user the permissions to edit and delete their profile.", "is_correct": false }
+      ]
+    },
+    {
+      "text": "Where are the methods of the BaseUserManager?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "django.contrib.auth.models class UserManager", "is_correct": true },
+        { "text": "django.contrib.auth.views class RedirectURLMixin", "is_correct": false },
+        { "text": "django.contrib.auth.models class PermissionsMixin", "is_correct": false },
+        { "text": "django.contrib.auth.models class AbstractUser", "is_correct": false }
+      ]
+    },
+
+
+
+     {
+      "text": "Why do we override UserCreationForm?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Because the user model we are using when extending is no longer the User model used in the BaseForm", "is_correct": true },
+        { "text": "There is no need ot override the UserCreationForm", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "Why is UserCreationForm important?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Because it handles password validation and hashing automatically, ensuring passwords are stored securely.", "is_correct": true },
+        { "text": "Because it provides built-in validation for password confirmation (password1 / password2).", "is_correct": false },
+        { "text": "Because it follows Django’s authentication rules, reducing the risk of security mistakes.", "is_correct": false },
+        { "text": "Because it simplifies user creation by providing a ready-to-use, secure form.", "is_correct": false }
+      ]
+    },
+
+     {
+      "text": "What is the difference between admin.ModelAdmin and UserAdmin?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "No difference between the two.", "is_correct": false },
+        { "text": "admin.ModelAdmin is the generic base class used to customize how any model appears in the Django admin. UserAdmin is a specialized subclass of ModelAdmin designed specifically for user models, with built-in support for: password hashing, permission management, groups, staff/superuser fields,user creation and change forms", "is_correct": true },
+        { "text": "The difference is only in the fieldsets.", "is_correct": false },
+        { "text": "admin.ModelAdmin is not hashing the passwords, while UserAdmin is.", "is_correct": false }
+      ]
+    },
+     {
+      "text": "What is the purpose of a Profile Model?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "To enhance user experience when registering and contain any additional information for each user.", "is_correct": true },
+        { "text": "To allow the user to add profile picture.", "is_correct": false },
+        { "text": "To allow the user to personalize their experience.", "is_correct": false },
+        { "text": "To add more permissions per user.", "is_correct": false }
+      ]
+    },
+    {
+      "text": "When it comes to signals, where does the ready() method needs to be added?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "In the apps.py file of the signal`s folder.", "is_correct": true },
+        { "text": "In the same file as the signal.", "is_correct": false },
+        { "text": "In the view that works with the signal.", "is_correct": false },
+        { "text": "In a file of its own called helpers.py", "is_correct": false }
+      ]
+    },
+{
+  "text": "What is the purpose of the ready() method?",
+  "question_type": "closed",
+  "difficulty": 1,
+  "choices": [
+    {"text": "To run code when the app is loaded, usually to import signals so that signal handlers are registered.", "is_correct": true},
+    {"text": "To let Django know about the existence of the signal.", "is_correct": false},
+    {"text": "To create a profile when a user is registered.", "is_correct": false},
+    {"text": "To connect the signal with the view.", "is_correct": false}
+  ]
+},
+    {
+      "text": "What is a Django signal?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Django signals provide a way to allow decoupled applications to get notified when certain events occur in a Django application.", "is_correct": true },
+        { "text": "A signal is a piece of code that is easily debbuged and sends notifications to other apps", "is_correct": false },
+        { "text": "Signals are the best practice for creating a profile when a user registers", "is_correct": false },
+        { "text": "A piece of code that is solely used for object creation.", "is_correct": false }
+      ]
+    }
+  ]
+}
