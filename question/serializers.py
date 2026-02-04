@@ -1,11 +1,12 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 from closed_choice.serializers import ClosedChoiceSerializer
 from question.models import Question
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    choices = ClosedChoiceSerializer(many=True, read_only=True)
+    choices = SerializerMethodField()
 
     class Meta:
         model = Question

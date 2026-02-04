@@ -23,7 +23,6 @@ class TopicQuestionSet(ListAPIView):
         topic_id = self.kwargs['pk']
         return (
             Question.objects.filter(topic_id=topic_id)
-            .select_related('topic')
             .prefetch_related('choices')
 
         )

@@ -10,10 +10,11 @@ class ClosedChoice(models.Model):
     text = models.CharField(max_length=300)
     is_correct = models.BooleanField(default=False)
 
-    def clean(self):
-        if self.is_correct:
-            qs = ClosedChoice.objects.filter(
-                question=self.question,
-                is_correct=True).exclude(pk=self.pk)
-            if qs.exists():
-                raise ValidationError('Only one correct answer allowed.')
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['question'],
+                condition=models.Q(is_correct=True),
+                name='one_correct_choice_per_question'
+            )
+        ]

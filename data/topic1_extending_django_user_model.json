@@ -45,8 +45,6 @@
       ]
     },
 
-
-
      {
       "text": "Why do we override UserCreationForm?",
       "question_type": "closed",
