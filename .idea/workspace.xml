@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b12586ea-91b0-41b9-98b8-3b91ca2dc6bb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/learning_user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +19,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="396ijuSeNFaBU90TtUSX1EY82TJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,6 +38,7 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/mmitova/job_postings_scrapper",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -89,6 +90,9 @@
       <option name="presentableId" value="Default" />
       <updated>1770023059375</updated>
       <workItem from="1770023060438" duration="12465000" />
+      <workItem from="1770114266496" duration="6074000" />
+      <workItem from="1770200444090" duration="1810000" />
+      <workItem from="1770217414304" duration="609000" />
     </task>
     <servers />
   </component>
