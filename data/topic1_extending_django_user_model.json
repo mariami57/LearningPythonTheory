@@ -160,6 +160,12 @@
         { "text": "REQUIRED_FIELDS", "is_correct": false },
         { "text": "all answers are correct", "is_correct": false }
       ]
+    },
+    {
+      "text": "Explain how signals work",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": []
     }
   ]
 }

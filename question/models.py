@@ -18,3 +18,5 @@ class Question(models.Model):
     text = models.TextField()
     question_type = models.CharField(choices=QUESTION_TYPES, max_length=10)
     difficulty = models.IntegerField(default=1)
+    reference_answer = models.TextField(null=True, blank=True)
+    key_points = models.JSONField(null=True, blank=True)

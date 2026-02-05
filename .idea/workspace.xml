@@ -5,8 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/topic1_extending_django_user_model.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/topic1_extending_django_user_model.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/question/management/commands/import_questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/question/management/commands/import_questions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/question/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/question/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useranswer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/useranswer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useranswer/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/useranswer/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useranswer/services/evaluators.py" beforeDir="false" afterPath="$PROJECT_DIR$/useranswer/services/evaluators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useranswer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/useranswer/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +100,7 @@
       <workItem from="1770114266496" duration="6074000" />
       <workItem from="1770200444090" duration="1810000" />
       <workItem from="1770217414304" duration="9466000" />
-      <workItem from="1770279614919" duration="2153000" />
+      <workItem from="1770279614919" duration="5929000" />
     </task>
     <servers />
   </component>

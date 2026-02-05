@@ -15,7 +15,7 @@ class AnswerEvaluator(ABC):
 
 class KeywordEvaluator(AnswerEvaluator):
     def evaluate(self, question, reference_answer, user_answer):
-        key_points = reference_answer.key_points or []
+        key_points = question.key_points or []
         matched = [
             kp for kp in key_points if kp.lower() in user_answer.lower()
         ]
