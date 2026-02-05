@@ -121,6 +121,45 @@
         { "text": "Signals are the best practice for creating a profile when a user registers", "is_correct": false },
         { "text": "A piece of code that is solely used for object creation.", "is_correct": false }
       ]
+    },
+
+    {
+      "text": "What classes/methods do we need to inherit in the model, in order to extend Django`s UserModel at the most basic level?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "AbstractUser, UserIsCreatorMixin", "is_correct": false },
+        { "text": "model.UserModel, LoginRequiredMixin", "is_correct": false },
+        { "text": "AbstractBaseUser, PermissionsMixin", "is_correct": true },
+        { "text": "models.Model, PermissionsMixin", "is_correct": false }
+      ]
+    },
+
+        {
+      "text": "What settings are we required to add in the settings.py file when overriding Django`s UserModel?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "AUTH_USER_MODEL = 'user_app.CustomUserModel'", "is_correct": true },
+        { "text": "user_app in INSTALLED_APPS", "is_correct": false },
+        { "text": "LOGIN_REDIRECT_URL", "is_correct": false },
+        { "text": "LOGOUT_REDIRECT_URL", "is_correct": false }
+      ]
+    },
+
+        {
+      "text": "What should the extended UserModel contain?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "is_staff field", "is_correct": false },
+        { "text": "is_active field", "is_correct": false },
+        { "text": "username field", "is_correct": false },
+        { "text": "objects = OverridenBaseUserManager()", "is_correct": false },
+        { "text": "USERNAME_FIELD", "is_correct": false },
+        { "text": "REQUIRED_FIELDS", "is_correct": false },
+        { "text": "all answers are correct", "is_correct": false }
+      ]
     }
   ]
 }

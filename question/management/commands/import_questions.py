@@ -24,7 +24,7 @@ class Command(BaseCommand):
         topic = Topic.objects.get(pk=data['topic_id'])
 
         for q_data in  data['questions']:
-            question = Question.objects.create(
+            question, _ = Question.objects.get_or_create(
                 topic=topic,
                 text=q_data['text'],
                 question_type=q_data['question_type'],
@@ -32,16 +32,13 @@ class Command(BaseCommand):
             )
 
             if q_data.get('question_type') == Question.CLOSED:
-                choices = [
-                    ClosedChoice(
-                        question=question,
-                        text=choice['text'],
-                        is_correct=choice.get('is_correct', False),
-                    ) for choice in q_data.get('choices', [])
-                ]
-
-                ClosedChoice.objects.bulk_create(choices)
-
-
+                for choice in q_data.get('choices', []):
+                    ClosedChoice.objects.get_or_create(
+                        question_id=question.id,
+                        text=choice["text"],
+                        defaults={
+                            "is_correct": choice.get("is_correct", False)
+                        }
+                    )
 
         self.stdout.write(self.style.SUCCESS('Successfully imported questions'))
