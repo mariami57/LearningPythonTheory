@@ -1,12 +1,15 @@
+from django.contrib.auth.decorators import login_required
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.shortcuts import render
 
 from closed_choice.models import ClosedChoice
 from question.models import Question
 from useranswer.models import UserAnswer
 from useranswer.services.evaluators import KeywordEvaluator
 from useranswer.serializers import SubmitAllAnswerSerializer
+from topic.models import Topic
 
 
 # Create your views here.
@@ -73,3 +76,9 @@ class SubmitAllAnswersView(APIView):
                 })
 
         return Response({'results': results})
+
+@login_required
+def submit_page(request, pk):
+    topic = Topic.objects.get(pk=pk)
+    return render(request,
+                  'test_quiz.html', {'topic': topic, 'pk':pk})

@@ -1,4 +1,4 @@
-const topicEl = document.getElementByID('topicTitle');
+const topicEl = document.getElementById('topicTitle');
 const topicId = parseInt(topicEl.dataset.topicId, 10);
 
 const QUESTIONS_URL = `/topic/${topicId}/questions/`;
@@ -15,7 +15,7 @@ async function loadQuestions() {
     renderQuestions();
 }
 
-function renderQuestions(results = nul) {
+function renderQuestions(results = null) {
     const container = document.getElementById('quiz');
     container.innerHTML = '';
 
@@ -28,7 +28,7 @@ function renderQuestions(results = nul) {
             if (results[q.id].correct === false) qDiv.classList.add('incorrect');
         }
 
-        qDiv.innerHTML = `<h3>$Pq.text</h3>`;
+        qDiv.innerHTML = `<h3>${q.text}</h3>`;
 
         if (q.choices && q.choices.length > 0) {
         const choicesDiv = document.createElement('div');
@@ -37,8 +37,8 @@ function renderQuestions(results = nul) {
             q.choices.forEach(choice => {
                 const label = document.createElement('label');
                 label.innerHTML = `<input type="radio" name="q${q.id}" value="${choice.id}">${choice.text}`;
-                label.querySelector('input').addEventListener('change', () => {
-                    userAnswers[q.id] = {choice_id: choice_id};
+                label.querySelector('input').addEventListener('change', (e) => {
+                    userAnswers[q.id] = {choice_id: parseInt(e.target.value, 10)};
                 });
                 choicesDiv.appendChild(label);
             });
@@ -76,3 +76,36 @@ function renderQuestions(results = nul) {
         container.appendChild(qDiv);
     });
 }
+
+document.getElementById('submitBtn').addEventListener('click', async() => {
+    const payload = {
+        answers: Object.entries(userAnswers).map(([qid, data]) => ({
+            question_id: parseInt(qid),
+            ...data
+        }))
+    };
+
+
+    const res = await fetch(SUBMIT_URL, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+        alert('Submission failed');
+        return;
+    }
+
+    const resultData = await res.json();
+
+    renderQuestions(resultData.results);
+});
+
+loadQuestions().catch(err => {
+    console.error(err);
+    alert('Error loading questions');
+})

@@ -10,7 +10,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['text', 'difficulty', 'choices']
+        fields = ['id', 'text', 'difficulty', 'choices']
 
     def get_choices(self, obj):
         if obj.question_type == Question.CLOSED:
