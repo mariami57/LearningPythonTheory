@@ -23,5 +23,6 @@ urlpatterns = [
     path('user/', include('learning_user.urls')),
 
     path('topic/', include('topic.urls')),
+    path('api-auth/', include('rest_framework.urls'))
 
 ]

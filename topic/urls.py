@@ -1,19 +1,14 @@
 from django.urls import path, include
 
 from topic.views import TopicViewList, TopicQuestionSet
-from useranswer.views import SubmitAnswerView, answer_test_page
+from useranswer.views import SubmitAllAnswersView
 
 urlpatterns = [
     path('all-topics/', TopicViewList.as_view(), name='all_topics'),
     path('<int:pk>/', include([
         path('questions/', TopicQuestionSet.as_view(), name='question_set'),
-
-        # HTML test page
-        path('answer_page/', answer_test_page, name='answer-page'),
-
-        # DRF API endpoint for submitting answers
-        path('answer/', SubmitAnswerView.as_view(), name='submit-answer'),
-        ]),
-    ),
+        # Submit answer endpoint
+        path('submit/', SubmitAllAnswersView.as_view(), name='submit_answer'),
+    ]))
 
 ]

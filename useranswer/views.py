@@ -1,73 +1,75 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from rest_framework import permissions, status
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from closed_choice.models import ClosedChoice
 from question.models import Question
 from useranswer.models import UserAnswer
-from useranswer.serializers import SubmitAnswerSerializer
 from useranswer.services.evaluators import KeywordEvaluator
+from useranswer.serializers import SubmitAllAnswerSerializer
 
 
 # Create your views here.
-@login_required
-def answer_test_page(request, pk):
-    return render(request, 'test_quiz.html', context={'topic_id': pk})
-
-class SubmitAnswerView(APIView):
+class SubmitAllAnswersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, topic_id):
-        question_id = request.data.get('question_id')
-        if not question_id:
-            return Response({"error": "question_id is missing"}, status=400)
-
-        try:
-            question = Question.objects.get(id=question_id, topic_id=topic_id)
-        except Question.DoesNotExist:
-            return Response({"error": "Question not found for this topic"}, status=404)
-
-        serializer = SubmitAnswerSerializer(
-            data=request.data, context={'question': question}
-        )
+    def post(self, request, pk):
+        serializer = SubmitAllAnswerSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        if question.question_type == Question.CLOSED:
-            answer, _ = UserAnswer.objects.update_or_create(
-                user=request.user,
-                question=question,
-                defaults={'selected_choice': serializer.validated_data['choice']}
-            )
-            score = answer.is_correct()
-            feedback = None
-        else:
-            text_answer = serializer.validated_data['text']
-            answer, _ = UserAnswer.objects.update_or_create(
-                user=request.user,
-                question=question,
-                defaults={'text': text_answer}
+        results = []
+
+        for answer_data in serializer.validated_data['answers']:
+            question = Question.objects.get(
+                id=answer_data['question_id'],
+                topic_id=pk
             )
 
-            evaluator = KeywordEvaluator()
-            evaluation = evaluator.evaluate(
-                question=question,
-                reference_answer=question.reference_answer,
-                user_answer=text_answer,
-            )
+            if question.question_type == Question.CLOSED:
+                choice = ClosedChoice.objects.get(
+                    id=answer_data['choice_id'],
+                    question=question
+                )
 
-            answer.evaluated_score = evaluation['score']
-            answer.evaluated_feedback = evaluation['feedback']
-            answer.save()
+                answer, _ = UserAnswer.objects.update_or_create(
+                    user=request.user,
+                    question=question,
+                    defaults={'selected_choice': choice}
+                )
 
-            score = evaluation['score']
-            feedback = evaluation['feedback']
+                results.append({
+                    'question_id': question.id,
+                    'type': 'closed',
+                    'selected_choice': choice.id,
+                    'correct': choice.is_correct
+                })
 
-        return Response({
-            'question_id': question.id,
-            'created_at': answer.created_at,
-            'correct': score if question.question_type == Question.CLOSED else None,
-            'score': score,
-            'feedback': feedback
-        })
+            else:
+                text = answer_data.get('text_answer', '')
 
+                answer, _ = UserAnswer.objects.update_or_create(
+                    user=request.user,
+                    question=question,
+                    defaults={'text': text}
+                )
+
+                evaluator = KeywordEvaluator()
+                evaluation = evaluator.evaluate(
+                    question,
+                    question.reference_answer,
+                    text
+                )
+
+                answer.evaluated_score = evaluation['score']
+                answer.evaluated_feedback = evaluation['feedback']
+                answer.save()
+
+                results.append({
+                    'question_id': question.id,
+                    'type': 'open',
+                    'score': evaluation['score'],
+                    'feedback': evaluation['feedback'],
+                    'reference_answer': question.reference_answer.text
+                })
+
+        return Response({'results': results})

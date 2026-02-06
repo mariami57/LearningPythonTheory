@@ -20,7 +20,7 @@ class UserAnswer(models.Model):
         unique_together = ('user', 'question')
 
     def is_correct(self):
-        if self.question_type == Question.OPEN:
+        if self.question.question_type == Question.OPEN:
             return None
 
         return bool(self.selected_choice and self.selected_choice.is_correct)
