@@ -31,16 +31,31 @@ function renderQuestions(results = null) {
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
 
         if (q.choices && q.choices.length > 0) {
-        const choicesDiv = document.createElement('div');
-            choicesDiv.className = 'choices';
+            if (!userAnswers[q.id]) userAnswers[q.id] = {choice_id: null};
 
-            q.choices.forEach(choice => {
-                const label = document.createElement('label');
-                label.innerHTML = `<input type="radio" name="q${q.id}" value="${choice.id}">${choice.text}`;
-                label.querySelector('input').addEventListener('change', (e) => {
-                    userAnswers[q.id] = {choice_id: parseInt(e.target.value, 10)};
-                });
-                choicesDiv.appendChild(label);
+            const choicesDiv = document.createElement('div');
+                choicesDiv.className = 'choices';
+
+                q.choices.forEach(choice => {
+
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `q${q.id}`;
+                    input.value = choice.id;
+
+                     if (userAnswers[q.id].choice_id === choice.id) input.checked = true;
+                    choicesDiv.appendChild(label);
+
+                    input.addEventListener('change', (e) => {
+                        userAnswers[q.id] ={choice_id: parseInt(e.target.value, 10)};
+                        console.log(`Question ${q.id} selected choice:`, e.target.value);
+                    });
+
+                    label.appendChild(input);
+                    label.append(document.createTextNode(` ${choice.text}`));
+                    choicesDiv.appendChild(label);
+
             });
 
             qDiv.appendChild(choicesDiv);
@@ -53,6 +68,8 @@ function renderQuestions(results = null) {
             textarea.addEventListener('input', () => {
                 userAnswers[q.id] = {text_answer: textarea.value};
             });
+
+            textarea.value = userAnswers[q.id]?.text_answer || ''
             qDiv.appendChild(textarea);
         }
 
@@ -86,6 +103,8 @@ document.getElementById('submitBtn').addEventListener('click', async() => {
     };
 
     console.log("Submitting payload:", payload);
+    console.log("Submitting payload:", userAnswers);
+
     const res = await fetch(SUBMIT_URL, {
         method: 'POST',
         credentials: 'include',
