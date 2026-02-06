@@ -17,16 +17,17 @@ class SubmitAllAnswersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
-        serializer = SubmitAllAnswerSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
 
         results = []
 
-        for answer_data in serializer.validated_data['answers']:
+        for answer_data in request.data['answers']:
             question = Question.objects.get(
                 id=answer_data['question_id'],
                 topic_id=pk
             )
+
+            serializer = SubmitAllAnswerSerializer(data=answer_data, context={'question':question})
+            serializer.is_valid(raise_exception=True)
 
             if question.question_type == Question.CLOSED:
                 choice = ClosedChoice.objects.get(

@@ -7,8 +7,8 @@ urlpatterns = [
     path('all-topics/', TopicViewList.as_view(), name='all_topics'),
     path('<int:pk>/', include([
         path('questions/', TopicQuestionSet.as_view(), name='question_set'),
-        path('submit/', submit_page, name='submit_page'),
-        path('submit/api', SubmitAllAnswersView.as_view(), name='submit_answer'),
+        path('quiz/', submit_page, name='submit_page'),
+        path('submit/', SubmitAllAnswersView.as_view(), name='submit_answer'),
     ]))
 
 ]

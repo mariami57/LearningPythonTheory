@@ -85,20 +85,31 @@ document.getElementById('submitBtn').addEventListener('click', async() => {
         }))
     };
 
-
+    console.log("Submitting payload:", payload);
     const res = await fetch(SUBMIT_URL, {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),
         },
         body: JSON.stringify(payload)
     });
 
     if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Server error:', errorText)
         alert('Submission failed');
         return;
     }
+
+    const contentType = res.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+        const text = await res.text();
+        console.error("Expected JSON, got:", text);
+        alert("Unexpected server response");
+        return;
+}
 
     const resultData = await res.json();
 
@@ -109,3 +120,7 @@ loadQuestions().catch(err => {
     console.error(err);
     alert('Error loading questions');
 })
+
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
