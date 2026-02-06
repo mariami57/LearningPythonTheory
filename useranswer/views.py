@@ -1,39 +1,43 @@
 from django.contrib.auth.decorators import login_required
-from rest_framework import permissions
-from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from question.models import Question
+from closed_choice.models import ClosedChoice
+from useranswer.models import UserAnswer
+from .serializers import SubmitAllAnswerSerializer
+from useranswer.services.evaluators import KeywordEvaluator
+from topic.models import Topic
 from django.shortcuts import render
 
-from closed_choice.models import ClosedChoice
-from question.models import Question
-from useranswer.models import UserAnswer
-from useranswer.services.evaluators import KeywordEvaluator
-from useranswer.serializers import SubmitAllAnswerSerializer
-from topic.models import Topic
-
-
-# Create your views here.
 class SubmitAllAnswersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, pk):
+    def post(self, request, pk):  # pk is topic_id
+        serializer = SubmitAllAnswerSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        results = []
+        results = {}
 
-        for answer_data in request.data['answers']:
-            question = Question.objects.get(
-                id=answer_data['question_id'],
-                topic_id=pk
-            )
+        for ans in serializer.validated_data['answers']:
+            question_id = ans['question_id']
+            try:
+                question = Question.objects.get(id=question_id, topic_id=pk)
+            except Question.DoesNotExist:
+                continue
 
-            serializer = SubmitAllAnswerSerializer(data=answer_data, context={'question':question})
-            serializer.is_valid(raise_exception=True)
 
             if question.question_type == Question.CLOSED:
-                choice = ClosedChoice.objects.get(
-                    id=answer_data['choice_id'],
-                    question=question
-                )
+                choice_id = ans.get('choice_id')
+                if not choice_id:
+                    results[question_id] = {'correct': False, 'error': 'No choice selected'}
+                    continue
+
+                try:
+                    choice = ClosedChoice.objects.get(id=choice_id, question=question)
+                except ClosedChoice.DoesNotExist:
+                    results[question_id] = {'correct': False, 'error': 'Invalid choice'}
+                    continue
 
                 answer, _ = UserAnswer.objects.update_or_create(
                     user=request.user,
@@ -41,16 +45,11 @@ class SubmitAllAnswersView(APIView):
                     defaults={'selected_choice': choice}
                 )
 
-                results.append({
-                    'question_id': question.id,
-                    'type': 'closed',
-                    'selected_choice': choice.id,
-                    'correct': choice.is_correct
-                })
+                results[question_id] = {'correct': answer.is_correct()}
+
 
             else:
-                text = answer_data.get('text_answer', '')
-
+                text = ans.get('text_answer', '').strip()
                 answer, _ = UserAnswer.objects.update_or_create(
                     user=request.user,
                     question=question,
@@ -59,24 +58,22 @@ class SubmitAllAnswersView(APIView):
 
                 evaluator = KeywordEvaluator()
                 evaluation = evaluator.evaluate(
-                    question,
-                    question.reference_answer,
-                    text
+                    question=question,
+                    reference_answer=question.reference_answer,
+                    user_answer=text
                 )
 
                 answer.evaluated_score = evaluation['score']
                 answer.evaluated_feedback = evaluation['feedback']
                 answer.save()
 
-                results.append({
-                    'question_id': question.id,
-                    'type': 'open',
+                results[question_id] = {
                     'score': evaluation['score'],
-                    'feedback': evaluation['feedback'],
-                    'reference_answer': question.reference_answer.text
-                })
+                    'feedback': evaluation['feedback']
+                }
 
-        return Response({'results': results})
+        return Response({'results': results}, status=status.HTTP_200_OK)
+
 
 @login_required
 def submit_page(request, pk):

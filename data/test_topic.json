@@ -24,7 +24,7 @@
         { "text": "objects = OverridenBaseUserManager()", "is_correct": false },
         { "text": "USERNAME_FIELD", "is_correct": false },
         { "text": "REQUIRED_FIELDS", "is_correct": false },
-        { "text": "all answers are correct", "is_correct": false }
+        { "text": "all answers are correct", "is_correct": true }
       ]
     },
     {
