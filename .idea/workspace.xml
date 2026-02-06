@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b12586ea-91b0-41b9-98b8-3b91ca2dc6bb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/frontend_quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/frontend_quiz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/test_quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/test_quiz.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
