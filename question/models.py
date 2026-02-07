@@ -1,5 +1,4 @@
 from django.db import models
-
 from topic.models import Topic
 
 
@@ -20,3 +19,18 @@ class Question(models.Model):
     difficulty = models.IntegerField(default=1)
     reference_answer = models.TextField(null=True, blank=True)
     key_points = models.JSONField(null=True, blank=True)
+
+
+class ClosedChoice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
+    text = models.CharField(max_length=300)
+    is_correct = models.BooleanField(default=False)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['question'],
+                condition=models.Q(is_correct=True),
+                name='one_correct_choice_per_question'
+            )
+        ]

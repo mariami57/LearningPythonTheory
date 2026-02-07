@@ -1,8 +1,8 @@
 # serializers.py
 
 from rest_framework import serializers
-from question.models import Question
-from closed_choice.models import ClosedChoice
+from question.models import Question, ClosedChoice
+
 
 class SingleAnswerSerializer(serializers.Serializer):
     question_id = serializers.IntegerField()

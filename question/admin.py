@@ -1,7 +1,5 @@
 from django.contrib import admin
-
-from closed_choice.models import ClosedChoice
-from question.models import Question
+from question.models import Question, ClosedChoice
 
 
 # Register your models here.

@@ -2,8 +2,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
-from question.models import Question
-from closed_choice.models import ClosedChoice
+from question.models import Question, ClosedChoice
 from useranswer.models import UserAnswer
 from .serializers import SubmitAllAnswerSerializer
 from useranswer.services.evaluators import KeywordEvaluator
@@ -45,7 +44,7 @@ class SubmitAllAnswersView(APIView):
                     defaults={'selected_choice': choice}
                 )
 
-                results[question_id] = {'correct': answer.is_correct()}
+                results[question_id] = {'correct': answer.answer_is_correct()}
 
 
             else:
