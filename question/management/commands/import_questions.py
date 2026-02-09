@@ -2,9 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 from django.db import transaction
-
-from closed_choice.models import ClosedChoice
-from question.models import Question
+from question.models import Question, ClosedChoice
 from topic.models import Topic
 
 
@@ -23,7 +21,7 @@ class Command(BaseCommand):
 
         topic = Topic.objects.get(pk=data['topic_id'])
 
-        for q_data in  data['questions']:
+        for q_data in data['questions']:
             question, _ = Question.objects.get_or_create(
                 topic=topic,
                 text=q_data['text'],
@@ -35,9 +33,9 @@ class Command(BaseCommand):
                 for choice in q_data.get('choices', []):
                     ClosedChoice.objects.get_or_create(
                         question_id=question.id,
-                        text=choice["text"],
+                        text=choice['text'],
                         defaults={
-                            "is_correct": choice.get("is_correct", False)
+                            'is_correct': choice.get('is_correct', False)
                         }
                     )
 
