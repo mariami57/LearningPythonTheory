@@ -25,7 +25,7 @@ class KeywordEvaluator(AnswerEvaluator):
         missing = set(key_points) - set(matched)
 
         feedback = (
-            f'Covered concepts: {', '.join(matched)}\n'
+            f'Covered concepts: {", ".join(matched)}\n'
             f'Missing concepts: {", ".join(missing)}\n'
         )
 

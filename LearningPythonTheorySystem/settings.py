@@ -138,4 +138,4 @@ AUTH_USER_MODEL = 'learning_user.LearningUser'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-EVALUATION_MODE = "keyword"
+EVALUATION_MODE = 'keyword'

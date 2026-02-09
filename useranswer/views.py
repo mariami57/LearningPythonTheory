@@ -12,7 +12,7 @@ from django.shortcuts import render
 class SubmitAllAnswersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, pk):  # pk is topic_id
+    def post(self, request, pk):
         serializer = SubmitAllAnswerSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

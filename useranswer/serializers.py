@@ -1,7 +1,5 @@
-# serializers.py
-
 from rest_framework import serializers
-from question.models import Question, ClosedChoice
+
 
 
 class SingleAnswerSerializer(serializers.Serializer):
