@@ -47,7 +47,7 @@ function renderQuestions(results = null) {
                 });
 
                 label.appendChild(input);
-                label.appendChild(document.createTextNode(` ${choice.text}`));
+                label.appendChild(document.createTextNode(`${choice.text}`));
                 choicesDiv.appendChild(label);
             });
 
@@ -133,7 +133,10 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 
 // Helper to get CSRF token
 function getCSRFToken() {
-    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+     return document.cookie
+        .split('; ')
+        .find(row => row.startsWith('csrftoken='))
+        ?.split('=')[1];
 }
 
 loadQuestions().catch(err => {
