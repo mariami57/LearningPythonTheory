@@ -30,6 +30,8 @@
     .feedback {
       margin-top: 10px;
       font-style: italic;
+      height:100%;
+      white-space: pre-line;
     }
 
     .reference {

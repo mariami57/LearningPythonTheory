@@ -94,7 +94,8 @@ function renderQuestions(results = null) {
 
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback';
-                feedback.textContent = `${r.feedback[0]} \n ${r.feedback[1]}`
+                feedback.textContent = `${r.feedback}`
+                qDiv.appendChild(feedback);
 
                 const reference = document.createElement('div');
                 reference.className = 'reference';
