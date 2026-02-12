@@ -1,13 +1,23 @@
 from django.contrib.auth.decorators import login_required
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from question.models import Question, ClosedChoice
+from question.serializers import QuestionSerializer
 from useranswer.models import UserAnswer
 from .serializers import SubmitAllAnswerSerializer
 from useranswer.services.evaluators import KeywordEvaluator
 from topic.models import Topic
 from django.shortcuts import render
+
+class TopicQuestionSet(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = QuestionSerializer
+
+    def get_queryset(self):
+        topic_id = self.kwargs['pk']
+        return Question.objects.filter(topic_id=topic_id)
 
 class SubmitAllAnswersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
