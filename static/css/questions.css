@@ -47,9 +47,11 @@
 
 
     .correct-choice {
-        color: #d4edda;
+        color: green;
+    }
+
+    .wrong-choice {
+    color: red;
+    }
 }
 
-.wrong-choice {
-    color: #f8d7da;
-}

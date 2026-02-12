@@ -42,24 +42,30 @@ function renderQuestions(results = null) {
 
                 if (userAnswers[q.id].choice_id === choice.id) input.checked = true;
 
+                const textSpan = document.createElement('span');
+                textSpan.textContent = ` ${choice.text}`;
 
                 if (results && results[q.id]) {
                        const r = results[q.id];
 
                     if (choice.id === r.correct_choice_id) {
-                        label.classList.add("#correct-choice"); // green
+                        textSpan.classList.add("correct-choice");
+
                     }
                     if (r.correct === false && choice.id === userAnswers[q.id]?.choice_id) {
-                        label..classList.add("#wrong-choice");; // red
+                        textSpan.classList.add("wrong-choice");
+
                     }
-                    }
+                    if (r.correct === true) qDiv.classList.add("correct");
+                    if (r.correct === false) qDiv.classList.add("incorrect");
+                }
 
                 input.addEventListener('change', e => {
                     userAnswers[q.id] = {choice_id: parseInt(e.target.value)};
                 });
 
                 label.appendChild(input);
-                label.appendChild(document.createTextNode(`${choice.text}`));
+                label.appendChild(textSpan);
                 choicesDiv.appendChild(label);
             });
 
@@ -134,9 +140,6 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
         alert("An error occurred while submitting.");
     }
 
-    const resultData = await res.json();
-    console.log("Server returned results:", resultData);
-    renderQuestions(resultData.results);
 });
 
 // Helper to get CSRF token
