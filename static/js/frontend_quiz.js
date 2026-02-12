@@ -42,6 +42,18 @@ function renderQuestions(results = null) {
 
                 if (userAnswers[q.id].choice_id === choice.id) input.checked = true;
 
+
+                if (results && results[q.id]) {
+                       const r = results[q.id];
+
+                    if (choice.id === r.correct_choice_id) {
+                        label.classList.add("#correct-choice"); // green
+                    }
+                    if (r.correct === false && choice.id === userAnswers[q.id]?.choice_id) {
+                        label..classList.add("#wrong-choice");; // red
+                    }
+                    }
+
                 input.addEventListener('change', e => {
                     userAnswers[q.id] = {choice_id: parseInt(e.target.value)};
                 });
@@ -65,34 +77,19 @@ function renderQuestions(results = null) {
                 userAnswers[q.id] = {text_answer: textarea.value};
             });
 
+             if (results && results[q.id] && results[q.id].feedback !== undefined) {
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback';
+                feedback.textContent = `Score: ${results[q.id].score}`;
+                qDiv.appendChild(feedback);
+
+                const ref = document.createElement('div');
+                ref.className = 'reference';
+                ref.textContent = `Reference answer: ${results[q.id].feedback}`;
+                qDiv.appendChild(ref);
+            }
+
             qDiv.appendChild(textarea);
-        }
-
-        // Show results if provided
-        if (results && results[q.id]) {
-            const r = results[q.id];
-
-            if (r.correct !== undefined) {
-                qDiv.classList.add(r.correct ? 'correct' : 'incorrect');
-            }
-
-            if (r.score !== undefined) {
-                const scoreEl = document.createElement('div');
-                scoreEl.textContent = `Score: ${r.score}`;
-                qDiv.appendChild(scoreEl);
-            }
-
-            if (r.feedback) {
-                const feedbackEl = document.createElement('div');
-                feedbackEl.textContent = `Feedback: ${r.feedback}`;
-                qDiv.appendChild(feedbackEl);
-            }
-
-            if (r.error) {
-                const errorEl = document.createElement('div');
-                errorEl.textContent = `Error: ${r.error}`;
-                qDiv.appendChild(errorEl);
-            }
         }
 
         container.appendChild(qDiv);
@@ -110,24 +107,35 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 
     console.log("Submitting payload:", payload);
 
-    const res = await fetch(SUBMIT_URL, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken()
-        },
-        body: JSON.stringify(payload)
-    });
+       try {
+        const res = await fetch(SUBMIT_URL, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: JSON.stringify(payload)
+        });
 
-    if (!res.ok) {
-        const text = await res.text();
-        console.error("Submission failed:", text);
-        alert("Submission failed");
-        return;
+        if (!res.ok) {
+            const text = await res.text();
+            console.error("Submission failed:", text);
+            alert("Submission failed");
+            return;
+        }
+
+        const resultData = await res.json();
+        console.log("Server returned results:", resultData);
+        renderQuestions(resultData.results);
+
+    } catch (err) {
+        console.error(err);
+        alert("An error occurred while submitting.");
     }
 
     const resultData = await res.json();
+    console.log("Server returned results:", resultData);
     renderQuestions(resultData.results);
 });
 

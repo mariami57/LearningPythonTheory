@@ -54,7 +54,10 @@ class SubmitAllAnswersView(APIView):
                     defaults={'selected_choice': choice}
                 )
 
-                results[question_id] = {'correct': answer.answer_is_correct()}
+                correct_choice = ClosedChoice.objects.get(question=question, is_correct=True)
+
+                results[question_id] = {'correct': answer.answer_is_correct(),
+                                        'correct_choice_id': correct_choice.id}
 
 
             else:
