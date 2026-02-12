@@ -18,6 +18,7 @@ async function loadQuestions() {
 
 // Render questions
 function renderQuestions(results = null) {
+
     const container = document.getElementById('quiz');
     container.innerHTML = '';
 
@@ -83,22 +84,33 @@ function renderQuestions(results = null) {
                 userAnswers[q.id] = {text_answer: textarea.value};
             });
 
-             if (results && results[q.id] && results[q.id].feedback !== undefined) {
+             if (results && (results[q.id] || results[q.id.toString()])) {
+                const r = results[q.id] || results[q.id.toString()];
+
+                const score = document.createElement('div');
+                score.className = 'feedback';
+                score.textContent = `Score: ${r.score}`;
+                qDiv.appendChild(score);
+
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback';
-                feedback.textContent = `Score: ${results[q.id].score}`;
-                qDiv.appendChild(feedback);
+                feedback.textContent = `${r.feedback[0]} \n ${r.feedback[1]}`
 
-                const ref = document.createElement('div');
-                ref.className = 'reference';
-                ref.textContent = `Reference answer: ${results[q.id].feedback}`;
-                qDiv.appendChild(ref);
+                const reference = document.createElement('div');
+                reference.className = 'reference';
+                reference.textContent = `Reference answer: ${r.reference_answer || ''}`;
+                qDiv.appendChild(reference);
+
             }
 
             qDiv.appendChild(textarea);
         }
 
         container.appendChild(qDiv);
+
+            console.log("RESULTS OBJECT:", results);
+            console.log("Question ID:", q.id);
+            console.log("Result for this question:", results?.[q.id]);
     });
 }
 

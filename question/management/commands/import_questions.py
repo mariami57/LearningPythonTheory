@@ -22,16 +22,20 @@ class Command(BaseCommand):
         topic = Topic.objects.get(pk=data['topic_id'])
 
         for q_data in data['questions']:
-            question, _ = Question.objects.get_or_create(
+            question, _ = Question.objects.update_or_create(
                 topic=topic,
                 text=q_data['text'],
-                question_type=q_data['question_type'],
-                difficulty=q_data.get('difficulty', 1),
+                defaults={
+                    'question_type': q_data['question_type'],
+                    'difficulty': q_data.get('difficulty', 1),
+                    'reference_answer': q_data.get('reference_answer'),
+                    'key_points': q_data.get('key_points'),
+                }
             )
 
             if q_data.get('question_type') == Question.CLOSED:
                 for choice in q_data.get('choices', []):
-                    ClosedChoice.objects.get_or_create(
+                    ClosedChoice.objects.update_or_create(
                         question_id=question.id,
                         text=choice['text'],
                         defaults={

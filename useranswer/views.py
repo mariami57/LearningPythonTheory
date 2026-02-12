@@ -68,6 +68,9 @@ class SubmitAllAnswersView(APIView):
                     defaults={'text': text}
                 )
 
+                print("QUESTION REF:", question.reference_answer)
+                print("QUESTION KEY POINTS:", question.key_points)
+
                 evaluator = KeywordEvaluator()
                 evaluation = evaluator.evaluate(
                     question=question,
@@ -77,12 +80,16 @@ class SubmitAllAnswersView(APIView):
 
                 answer.evaluated_score = evaluation['score']
                 answer.evaluated_feedback = evaluation['feedback']
+                ref_answer = question.reference_answer
                 answer.save()
 
                 results[question_id] = {
+                    'reference_answer': ref_answer,
                     'score': evaluation['score'],
                     'feedback': evaluation['feedback']
                 }
+
+                print("Evaluation for question", question.id, evaluation)
 
         return Response({'results': results}, status=status.HTTP_200_OK)
 

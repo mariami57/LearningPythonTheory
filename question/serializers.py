@@ -15,7 +15,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'text', 'difficulty', 'choices']
+        fields = ['id', 'text', 'difficulty', 'choices', 'key_points', "reference_answer"]
 
     def get_choices(self, obj):
         if obj.question_type == Question.CLOSED:

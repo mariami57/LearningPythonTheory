@@ -163,7 +163,7 @@
     },
     {
       "text": "Explain how signals work",
-      "question_type": "closed",
+      "question_type": "open",
       "difficulty": 1,
       "choices": []
     }

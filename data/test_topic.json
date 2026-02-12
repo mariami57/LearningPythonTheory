@@ -1,5 +1,5 @@
 {
-  "topic_id": 2,
+  "topic_id": 1,
   "questions": [
         {
       "text": "What settings are we required to add in the settings.py file when overriding Django`s UserModel?",
@@ -28,10 +28,12 @@
       ]
     },
     {
-      "text": "Explain how signals work",
-      "question_type": "closed",
+      "text": "What is a signal?",
+      "question_type": "open",
       "difficulty": 1,
-      "choices": []
+      "choices": [],
+      "reference_answer": "Django signals provide a way to allow decoupled applications to get notified when certain events occur in a Django application.",
+      "key_points": ["provide a way", "decoupled applications", "get notified", "event"]
     }
   ]
 }
