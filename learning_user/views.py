@@ -8,4 +8,4 @@ class RegisterView(CreateAPIView):
     serializer_class = LearningUserRegistrationSerializer
 
 def register_view(request):
-    return render(request, 'log_in.html')
+    return render(request, 'register.html')

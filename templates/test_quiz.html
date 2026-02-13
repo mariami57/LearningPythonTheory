@@ -1,14 +1,6 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Quiz</title>
-</head>
-<body>
-
+{% block content %}
     <h2 id="topicTitle" data-topic-id="{{pk}}">{{ topic.title }}</h2>
     <h3>Quiz</h3>
 
@@ -16,8 +8,7 @@
 
     <button id="submitBtn">Submit answers</button>
 
-<script src="{% static 'js/frontend_quiz.js' %}">
+    <script src="{% static 'js/frontend_quiz.js' %}">
 
-</script>
-</body>
-</html>
+    </script>
+{% endblock %}
