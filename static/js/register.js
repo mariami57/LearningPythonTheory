@@ -21,7 +21,12 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     credentials: 'include'
    });
 
-   const data = await res.json();
-   console.log(data);
+   if (res.ok) {
+    window.location.href = '/user/login';
+   } else {
+    const error = await res.json();
+    console.log(error);
+   }
+
 
 });

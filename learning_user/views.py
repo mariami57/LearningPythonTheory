@@ -31,3 +31,5 @@ class LoginView(APIView):
                             status=status.HTTP_400_BAD_REQUEST
                             )
 
+def login_view(request):
+    return render(request, 'login.html')
