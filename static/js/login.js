@@ -1,4 +1,8 @@
-document.getElementByID('loginForm').addEventListener('submit', async function (e) {
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const formData = {
@@ -17,7 +21,7 @@ document.getElementByID('loginForm').addEventListener('submit', async function (
     });
 
     if (res.ok) {
-        window.location.href = '/topics/';
+        window.location.href = '/topic/all-topics/';
 
     } else {
         const error = await res.json();
@@ -25,3 +29,4 @@ document.getElementByID('loginForm').addEventListener('submit', async function (
     }
 
 });
+
