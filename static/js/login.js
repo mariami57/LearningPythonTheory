@@ -1,6 +1,4 @@
-function getCSRFToken() {
-    return document.querySelector('[name=csrfmiddlewaretoken]').value;
-}
+import { getCSRFToken } from './utils.js';
 
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();

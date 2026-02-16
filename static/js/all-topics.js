@@ -1,3 +1,5 @@
+import { getCSRFToken } from './utils.js';
+
 async function loadTopics() {
     const res = await fetch('/topic/topics-api/', {
         credentials: 'include'
@@ -13,19 +15,27 @@ async function loadTopics() {
 
     container.innerHTML = '';
 
-    topics.forEach(topic => {
-        const div = document.createElement('div');
-        div.className = 'topic';
+    if (topics && topics.length > 0) {
+        topics.forEach(topic => {
+            const div = document.createElement('div');
+            div.className = 'topic';
 
-        div.innerHTML = `
-            <h3>${topic.title}</h3>
-            <button onclick="goToTopic(${topic.id})">
-                Start Quiz
-            </button>
-        `;
+            div.innerHTML = `
+                <h3>${topic.title}</h3>
+                <button onclick="goToTopic(${topic.id})">
+                    Start Quiz
+                </button>
+            `;
 
-        container.appendChild(div);
-    });
+            container.appendChild(div);
+        });
+    } else {
+
+        const message = document.createElement('p');
+        message.textContent = 'No topics available at the moment.';
+        container.appendChild(message);
+    }
+
 }
 
 function goToTopic(topicId) {

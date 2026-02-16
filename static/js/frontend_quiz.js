@@ -1,3 +1,5 @@
+import { getCSRFToken } from './utils.js';
+
 const topicEl = document.getElementById('topicTitle');
 const topicId = parseInt(topicEl.dataset.topicId, 10);
 
@@ -156,12 +158,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 });
 
 // Helper to get CSRF token
-function getCSRFToken() {
-     return document.cookie
-        .split('; ')
-        .find(row => row.startsWith('csrftoken='))
-        ?.split('=')[1];
-}
+
 
 loadQuestions().catch(err => {
     console.error(err);
