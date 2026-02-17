@@ -1,0 +1,54 @@
+.topics-list {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    gap: 10px;
+
+}
+
+#topicsContainer {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    gap: 10px;
+    width: 100%;
+    padding:10px;
+}
+
+.topic {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    gap: 20px;
+    border: 2px solid rgb(95, 179, 65);
+    border-radius: 20%;
+    padding:10px;
+    width: 100%;
+}
+
+.topic-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.topic h3 {
+    width: 40%;
+}
+#logoutBtn {
+    width:30%;
+}
+
+#topicsContainer button {
+    padding: 0.1rem 0.4rem;
+    background: rgb(95, 179, 65);;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+}

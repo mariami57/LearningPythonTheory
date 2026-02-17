@@ -21,7 +21,10 @@ async function loadTopics() {
             div.className = 'topic';
 
             div.innerHTML = `
-                <h3>${topic.title}</h3>
+                <div class=topic-info>
+                    <h3>${topic.title}</h3>
+                    <h4>${topic.description}</h4>
+                </div>
                 <button onclick="goToTopic(${topic.id})">
                     Start Quiz
                 </button>

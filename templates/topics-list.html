@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
+    <div class="topics-list">
+        <h1 class="form-title">Available Topics</h1>
+        <div id="topicsContainer"></div>
+        <button id="logoutBtn">Logout</button>
+    </div>
 
-    <h1>Available Topics</h1>
-
-    <div id="topicsContainer"></div>
-
-    <button id="logoutBtn">Logout</button>
 
     <script type="module" src="{% static 'js/all-topics.js' %}"></script>
 {% endblock %}

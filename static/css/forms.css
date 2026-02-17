@@ -29,9 +29,9 @@
     background: #ffff;
 }
 
-#registerForm  button, #loginForm button {
+#registerForm  button, #loginForm button, #logoutBtn, #topicsContainer button {
     padding: 0.8rem 2rem;
-    background: rgb(95, 179, 65);;
+    background: rgb(95, 179, 65);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -40,6 +40,6 @@
     transition: background 0.3s ease;
 }
 
-#registerForm  button:hover, #loginForm button:hover {
+#registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover, #topicsContainer button:hover {
     background: rgb(225, 68, 60);;
 }
