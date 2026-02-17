@@ -22,19 +22,28 @@ async function loadTopics() {
 
             div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50';
 
+            const topicTitle = document.createElement('h3');
+            topicTitle.className = 'text-lg font-bold text-gray-800';
+            topicTitle.textContent = topic.title;
 
-            div.innerHTML = `
-                <div class="topic-info flex flex-col flex-1">
-                    <h3 class="text-lg font-bold text-gray-800">${topic.title}</h3>
-                    <h5 class="text-sm text-gray-600 mt-1">${topic.description}</h5>
-                </div>
-                <button
-                    class="ml-4 py-2 px-4"
-                    onclick="goToTopic(${topic.id})">
-                    Start Quiz
-                </button>
-            `;
+            const topicDescription = document.createElement('h5');
+            topicDescription.className = 'text-sm text-gray-600 mt-1';
+            topicDescription.textContent = topic.description;
 
+            const topicInfo = document.createElement('div');
+            topicInfo.className = 'topic-info flex flex-col flex-1'
+            topicInfo.appendChild(topicTitle);
+            topicInfo.appendChild(topicDescription);
+
+            const button = document.createElement('button');
+            button.className = 'ml-4 py-2 px-4'
+            button.textContent = 'Start Quiz';
+            button.addEventListener('click', () => {
+                goToTopic(topic.id);
+            })
+
+            div.appendChild(topicInfo);
+            div.appendChild(button);
             container.appendChild(div);
         });
     } else {
@@ -47,7 +56,7 @@ async function loadTopics() {
 }
 
 function goToTopic(topicId) {
-    window.location.href = `/${topicId}/quiz/`;
+    window.location.href = `/topic/${topicId}/quiz/`;
 }
 
 document.getElementById('logoutBtn').addEventListener('click', async () => {
