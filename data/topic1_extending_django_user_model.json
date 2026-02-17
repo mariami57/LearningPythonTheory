@@ -165,7 +165,9 @@
       "text": "Explain how signals work",
       "question_type": "open",
       "difficulty": 1,
-      "choices": []
+      "choices": [],
+      "reference_answer": "Django signals provide a way to allow decoupled applications to get notified when certain events occur in a Django application.",
+      "key_points": ["provide a way", "decoupled applications", "get notified", "event"]
     }
   ]
 }

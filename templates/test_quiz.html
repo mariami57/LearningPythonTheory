@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2 id="topicTitle" data-topic-id="{{pk}}">{{ topic.title }}</h2>
-    <h3>Quiz</h3>
+    <h2 id="topicTitle" data-topic-id="{{pk}}" class="text-2xl decoration-6 mb-2">{{ topic.title }}</h2>
 
     <div id="quiz"></div>
 
-    <button id="submitBtn">Submit answers</button>
+    <button id="submitBtn" class="ml-4 py-2 px-4">Submit answers</button>
 
     <script type="module" src="{% static 'js/frontend_quiz.js' %}">
 

@@ -9,13 +9,36 @@ const SUBMIT_URL = `/topic/${topicId}/submit/`;
 let questions = [];
 let userAnswers = {};
 
-// Load questions from API
-async function loadQuestions() {
-    const res = await fetch(QUESTIONS_URL, {credentials:'include'});
-    if (!res.ok) throw new Error("Failed to load questions");
+let currentPageUrl = `/topic/${topicId}/quiz/`;
 
-    questions = await res.json();
-    renderQuestions();
+// Load questions from API
+async function loadQuestions(url) {
+    const res = await fetch(url, {credentials:'include'});
+    if (!res.ok) throw new Error("Failed to load questions");
+    const data = await res.json();
+
+
+    renderQuestions(data.results);
+
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    nextBtn.disabled =!data.next;
+    prevBtn.disabled =!data.previous;
+
+    currentPageUrl = url;
+
+    nextBtn.onclick = () => {
+        if (data.next) loadQuestions(data.next);
+    };
+
+        prevBtn.onclick = () => {
+        if (data.previous) loadQuestions(data.previous);
+    };
+
+
+
+
 }
 
 // Render questions
@@ -24,7 +47,7 @@ function renderQuestions(results = null) {
     const container = document.getElementById('quiz');
     container.innerHTML = '';
 
-    questions.forEach(q => {
+    data.results.forEach(q => {
         const qDiv = document.createElement('div');
         qDiv.className = 'question';
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
@@ -111,9 +134,9 @@ function renderQuestions(results = null) {
 
         container.appendChild(qDiv);
 
-            console.log("RESULTS OBJECT:", results);
-            console.log("Question ID:", q.id);
-            console.log("Result for this question:", results?.[q.id]);
+//            console.log("RESULTS OBJECT:", results);
+//            console.log("Question ID:", q.id);
+//            console.log("Result for this question:", results?.[q.id]);
     });
 }
 
@@ -147,7 +170,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
         }
 
         const resultData = await res.json();
-        console.log("Server returned results:", resultData);
+        const questions = data.results;
+//        console.log("Server returned results:", resultData);
         renderQuestions(resultData.results);
 
     } catch (err) {
@@ -164,3 +188,6 @@ loadQuestions().catch(err => {
     console.error(err);
     alert("Failed to load questions");
 });
+
+
+

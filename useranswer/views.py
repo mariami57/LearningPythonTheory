@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from question.models import Question, ClosedChoice
+from question.pagination import FiveQuestionPagination
 from question.serializers import QuestionSerializer
 from useranswer.models import UserAnswer
 from .serializers import SubmitAllAnswerSerializer
@@ -14,6 +15,7 @@ from django.shortcuts import render
 class TopicQuestionSet(ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = QuestionSerializer
+    pagination_class = FiveQuestionPagination
 
     def get_queryset(self):
         topic_id = self.kwargs['pk']
