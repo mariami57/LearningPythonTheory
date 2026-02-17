@@ -2,10 +2,14 @@
 {% load static %}
 
 {% block content %}
-    <div class="topics-list flex flex-col items-center justify-center gap-2">
-        <h1 class="form-title">Available Topics</h1>
-        <div id="topicsContainer" class="flex flex-col items-center justify-center gap-4 p-2.5 w-full"></div>
-        <button id="logoutBtn">Logout</button>
+    <div class="relativerelative w-full h-screen">
+        <button id="logoutBtn" class="absolute top-2 right-2 p-[2px]">Log out</button>
+        <div class="topics-list flex flex-col items-center justify-center gap-2">
+            <h1 class="form-title text-2xl decoration-6 mb-2">Available Topics</h1>
+            <div id="topicsContainer" class="flex flex-col items-center justify-center gap-4 p-2.5 w-full"></div>
+
+        </div>
+
     </div>
 
 

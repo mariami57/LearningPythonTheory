@@ -1,25 +1,3 @@
-#registerForm, #loginForm {
-    display:flex;
-    margin: 50px auto;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    gap:20px;
-    border-radius:15px;
-    width:30%;
-    padding:20px;
-    background: #f4fee9;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-
-
-}
-
-.form-title h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-
-}
-
 #registerForm input, #loginForm input{
     width: 95%;
     padding: 0.6rem;
@@ -30,7 +8,7 @@
 }
 
 #registerForm  button, #loginForm button, #logoutBtn, #topicsContainer button {
-    padding: 0.8rem 2rem;
+    padding: 0.5rem 1.5rem;
     background: rgb(95, 179, 65);
     color: #fff;
     border: none;
@@ -41,5 +19,5 @@
 }
 
 #registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover, #topicsContainer button:hover {
-    background: rgb(225, 68, 60);;
+    background: rgb(225, 68, 60);
 }

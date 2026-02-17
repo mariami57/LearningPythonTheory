@@ -20,7 +20,7 @@ async function loadTopics() {
             const div = document.createElement('div');
 
 
-            div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50 mb-4';
+            div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50';
 
 
             div.innerHTML = `
@@ -29,7 +29,7 @@ async function loadTopics() {
                     <h5 class="text-sm text-gray-600 mt-1">${topic.description}</h5>
                 </div>
                 <button
-                    class="ml-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded transition"
+                    class="ml-4 py-2 px-4"
                     onclick="goToTopic(${topic.id})">
                     Start Quiz
                 </button>
