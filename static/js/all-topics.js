@@ -18,14 +18,19 @@ async function loadTopics() {
     if (topics && topics.length > 0) {
         topics.forEach(topic => {
             const div = document.createElement('div');
-            div.className = 'topic';
 
+            // Tailwind classes for the topic card
+            div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50 mb-4';
+
+            // Inner HTML
             div.innerHTML = `
-                <div class=topic-info>
-                    <h3>${topic.title}</h3>
-                    <h5>${topic.description}</h5>
+                <div class="topic-info flex flex-col flex-1">
+                    <h3 class="text-lg font-bold text-gray-800">${topic.title}</h3>
+                    <h5 class="text-sm text-gray-600 mt-1">${topic.description}</h5>
                 </div>
-                <button onclick="goToTopic(${topic.id})">
+                <button
+                    class="ml-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded transition"
+                    onclick="goToTopic(${topic.id})">
                     Start Quiz
                 </button>
             `;
