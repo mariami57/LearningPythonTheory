@@ -19,10 +19,10 @@ async function loadTopics() {
         topics.forEach(topic => {
             const div = document.createElement('div');
 
-            // Tailwind classes for the topic card
+
             div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50 mb-4';
 
-            // Inner HTML
+
             div.innerHTML = `
                 <div class="topic-info flex flex-col flex-1">
                     <h3 class="text-lg font-bold text-gray-800">${topic.title}</h3>
