@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <form id="registerForm" >
 
+    <form id="registerForm" >
+        <h1 class="form-title">Register</h1>
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username" required>
         <input type="email" name="email" placeholder="Email" required>

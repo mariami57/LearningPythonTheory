@@ -46,7 +46,7 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
     await fetch ('/user/logout/', {
         method: 'POST',
         headers: {
-            'X-CSRFToken': getCSRToken()
+            'X-CSRFToken': getCSRFToken()
         },
         credentials: 'include'
     });

@@ -1,0 +1,45 @@
+#registerForm, #loginForm {
+    display:flex;
+    margin: 50px auto;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    border-radius:15px;
+    width:30%;
+    padding:20px;
+    background: #f4fee9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+
+}
+
+.form-title h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+
+}
+
+#registerForm input, #loginForm input{
+    width: 95%;
+    padding: 0.6rem;
+    border: 1px solid #8dc169;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffff;
+}
+
+#registerForm  button, #loginForm button {
+    padding: 0.8rem 2rem;
+    background: rgb(95, 179, 65);;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#registerForm  button:hover, #loginForm button:hover {
+    background: rgb(225, 68, 60);;
+}
