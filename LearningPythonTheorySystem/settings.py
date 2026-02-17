@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'tailwind',
+    'theme',
 ] + PROJECT_APPS
 
 
@@ -147,3 +149,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 EVALUATION_MODE = 'keyword'
+
+TAILWIND_APP_NAME = 'theme'
