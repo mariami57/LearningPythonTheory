@@ -1,6 +1,5 @@
-import { getCSRFToken } from './utils.js';
-import { handlePaginationButtons } from './pagination.js';
-import { updatePaginationInfo } from './pagination.js';
+import { getCSRFToken, checkForUnansweredQuestions } from './utils.js';
+import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage } from './pagination.js';
 
 const topicEl = document.getElementById('topicTitle');
 const topicId = parseInt(topicEl.dataset.topicId, 10);
@@ -14,57 +13,55 @@ let allResults = {};
 let userAnswers = {};
 let currentPageUrl = QUESTIONS_URL;
 
-
-
 const container = document.getElementById('quiz');
+const submitBtn = document.getElementById('submitBtn');
 
 
-// Load questions from API
 async function loadQuestions(url) {
-    try{
-        const res = await fetch(url, {credentials:'include'});
+    try {
+        const res = await fetch(url, { credentials: 'include' });
         if (!res.ok) throw new Error("Failed to load questions");
 
         const data = await res.json();
 
-
         currentPageQuestions = data.results;
 
+
         currentPageQuestions.forEach(q => allQuestions[q.id] = q);
+
         renderQuestions(currentPageQuestions, allResults);
-        handlePaginationButtons(data, loadQuestions);
-        currentPageUrl = url;
 
-        updatePaginationInfo(data, url);
+        const page = updatePaginationInfo(data, url);
+        updateQuizInfo(data.count);
 
 
+        handlePaginationButtons(data, loadQuestions, userAnswers);
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
         console.error(err);
-        alert("Failed to load questions after pagination")
+        alert("Failed to load questions after pagination");
     }
-
 }
 
 // Render questions
-function renderQuestions(questions, results = {}) {
-
+function renderQuestions(questions, results) {
     container.innerHTML = '';
 
     if (!questions || questions.length === 0) {
-        container.innerHTML = "<p> No questions available. </p";
+        container.innerHTML = "<p>No questions available.</p>";
         return;
     }
 
-    questions.forEach(q => {
+    questions.forEach((q, idx) => {
         const qDiv = document.createElement('div');
         qDiv.className = 'question';
+        qDiv.dataset.id = q.id;
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
 
         // Closed questions
         if (q.choices && q.choices.length > 0) {
-            if (!userAnswers[q.id]) userAnswers[q.id] = {choice_id: null};
-
             const choicesDiv = document.createElement('div');
             choicesDiv.className = 'choices';
 
@@ -75,28 +72,19 @@ function renderQuestions(questions, results = {}) {
                 input.name = `q${q.id}`;
                 input.value = choice.id;
 
-                if (userAnswers[q.id].choice_id === choice.id) input.checked = true;
+                if (userAnswers[q.id]?.choice_id === choice.id) input.checked = true;
 
                 const textSpan = document.createElement('span');
-                textSpan.textContent = `${choice.text}`;
+                textSpan.textContent = choice.text;
 
-                if (results && results[q.id]) {
-                       const r = results[q.id];
-
-                    if (choice.id === r.correct_choice_id) {
-                        textSpan.classList.add("correct-choice");
-
-                    }
-                    if (r.correct === false && choice.id === userAnswers[q.id]?.choice_id) {
-                        textSpan.classList.add("wrong-choice");
-
-                    }
-                    if (r.correct === true) qDiv.classList.add("correct");
-                    if (r.correct === false) qDiv.classList.add("incorrect");
+                const r = results[q.id];
+                if (r) {
+                    if (choice.id === r.correct_choice_id) textSpan.classList.add("correct-choice");
+                    if (!r.correct && choice.id === userAnswers[q.id]?.choice_id) textSpan.classList.add("wrong-choice");
                 }
 
-                input.addEventListener('change', e => {
-                    userAnswers[q.id] = {choice_id: parseInt(e.target.value)};
+                input.addEventListener('change', () => {
+                    userAnswers[q.id] = { choice_id: parseInt(input.value) };
                 });
 
                 label.appendChild(input);
@@ -106,7 +94,6 @@ function renderQuestions(questions, results = {}) {
 
             qDiv.appendChild(choicesDiv);
         }
-
         // Open-ended questions
         else {
             const textarea = document.createElement('textarea');
@@ -115,12 +102,11 @@ function renderQuestions(questions, results = {}) {
             textarea.value = userAnswers[q.id]?.text_answer || '';
 
             textarea.addEventListener('input', () => {
-                userAnswers[q.id] = {text_answer: textarea.value};
+                userAnswers[q.id] = { text_answer: textarea.value };
             });
 
-             if (results && (results[q.id] || results[q.id.toString()])) {
-                const r = results[q.id] || results[q.id.toString()];
-
+            const r = results[q.id];
+            if (r) {
                 const score = document.createElement('div');
                 score.className = 'feedback';
                 score.textContent = `Score: ${r.score}`;
@@ -128,33 +114,28 @@ function renderQuestions(questions, results = {}) {
 
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback';
-                feedback.textContent = `${r.feedback}`
+                feedback.textContent = r.feedback;
                 qDiv.appendChild(feedback);
 
                 const reference = document.createElement('div');
                 reference.className = 'reference';
-                reference.textContent = `Reference answer: ${r.reference_answer || ''}`;
+                reference.textContent = r.reference_answer || '';
                 qDiv.appendChild(reference);
-
             }
 
             qDiv.appendChild(textarea);
         }
 
         container.appendChild(qDiv);
-
-//            console.log("RESULTS OBJECT:", results);
-//            console.log("Question ID:", q.id);
-//            console.log("Result for this question:", results?.[q.id]);
     });
 }
 
-
-
-
-// Submit all answers
+// Submit answers
 if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
+       const pageSize = 5;
+       if (!checkForUnansweredQuestions(userAnswers, allQuestions, pageSize)) return;
+
         const payload = {
             answers: Object.entries(userAnswers).map(([qid, data]) => ({
                 question_id: parseInt(qid),
@@ -162,9 +143,7 @@ if (submitBtn) {
             }))
         };
 
-        console.log("Submitting payload:", payload);
-
-           try {
+        try {
             const res = await fetch(SUBMIT_URL, {
                 method: 'POST',
                 credentials: 'include',
@@ -183,26 +162,17 @@ if (submitBtn) {
             }
 
             const resultData = await res.json();
-    //        console.log("Server returned results:", resultData);
-            allResults = resultData.results;
+            Object.assign(allResults, resultData.results);
+
+
             renderQuestions(currentPageQuestions, allResults);
 
         } catch (err) {
             console.error(err);
             alert("An error occurred while submitting.");
         }
-
     });
 }
 
 
-// Helper to get CSRF token
-
-
-loadQuestions(QUESTIONS_URL).catch(err => {
-    console.error(err);
-    alert("Failed to load questions");
-});
-
-
-
+loadQuestions(QUESTIONS_URL);

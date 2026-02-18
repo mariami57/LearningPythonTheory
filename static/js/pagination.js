@@ -1,5 +1,7 @@
-let currentPage = 1;
-let totalPages = 1;
+import { checkForUnansweredQuestions } from './utils.js';
+
+export let currentPage = 1;
+export let totalPages = 1;
 
 export function handlePaginationButtons(data, loadQuestions) {
 
@@ -47,17 +49,17 @@ export function updatePaginationInfo(data, url) {
     const pageParam = urlObj.searchParams.get('page');
     currentPage = pageParam ? parseInt(pageParam) : 1;
 
-    updateQuizInfo(totalQuestions, currentPage, totalPages);
+    return currentPage;
 
 
 }
 
-function updateQuizInfo(totalQuestions, currentPage, totalPages) {
+export function updateQuizInfo(totalQuestions) {
     const infoDiv = document.getElementById('quizInfo');
+    if (!infoDiv) return;
+
     const infoTotalQuestionsP = document.createElement('p');
     const infoPageP = document.createElement('p');
-
-    if (!infoDiv) return;
 
     infoDiv.replaceChildren();
 
