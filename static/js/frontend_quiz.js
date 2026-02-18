@@ -8,46 +8,53 @@ const SUBMIT_URL = `/topic/${topicId}/submit/`;
 
 let questions = [];
 let userAnswers = {};
-
-let currentPageUrl = `/topic/${topicId}/quiz/`;
+let currentPageUrl = QUESTIONS_URL;
 
 // Load questions from API
 async function loadQuestions(url) {
-    const res = await fetch(url, {credentials:'include'});
-    if (!res.ok) throw new Error("Failed to load questions");
-    const data = await res.json();
+    try{
+        const res = await fetch(url, {credentials:'include'});
+        if (!res.ok) throw new Error("Failed to load questions");
 
+        const data = await res.json();
 
-    renderQuestions(data.results);
+        questions = data.results;
+        renderQuestions(questions);
 
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
 
-    nextBtn.disabled =!data.next;
-    prevBtn.disabled =!data.previous;
+        nextBtn.disabled =!data.next;
+        prevBtn.disabled =!data.previous;
 
-    currentPageUrl = url;
+        nextBtn.onclick = () => {
+            if (data.next) loadQuestions(data.next);
+        };
 
-    nextBtn.onclick = () => {
-        if (data.next) loadQuestions(data.next);
-    };
+            prevBtn.onclick = () => {
+            if (data.previous) loadQuestions(data.previous);
+        };
 
-        prevBtn.onclick = () => {
-        if (data.previous) loadQuestions(data.previous);
-    };
-
-
-
+        currentPageUrl = url;
+    } catch (err) {
+        console.error(err);
+        alert("Failed to load questions after pagination")
+    }
 
 }
 
 // Render questions
-function renderQuestions(results = null) {
+function renderQuestions(questions, results = null) {
 
     const container = document.getElementById('quiz');
     container.innerHTML = '';
 
-    data.results.forEach(q => {
+    if (!questions || questions.length === 0) {
+        container.innerHTML = "<p> No questions available. </p";
+        return;
+    }
+
+    questions.forEach(q => {
         const qDiv = document.createElement('div');
         qDiv.className = 'question';
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
@@ -69,7 +76,7 @@ function renderQuestions(results = null) {
                 if (userAnswers[q.id].choice_id === choice.id) input.checked = true;
 
                 const textSpan = document.createElement('span');
-                textSpan.textContent = ` ${choice.text}`;
+                textSpan.textContent = `${choice.text}`;
 
                 if (results && results[q.id]) {
                        const r = results[q.id];
@@ -170,9 +177,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
         }
 
         const resultData = await res.json();
-        const questions = data.results;
 //        console.log("Server returned results:", resultData);
-        renderQuestions(resultData.results);
+        renderQuestions(questions, resultData);
 
     } catch (err) {
         console.error(err);
@@ -184,7 +190,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 // Helper to get CSRF token
 
 
-loadQuestions().catch(err => {
+loadQuestions(QUESTIONS_URL).catch(err => {
     console.error(err);
     alert("Failed to load questions");
 });

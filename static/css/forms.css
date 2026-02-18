@@ -7,7 +7,7 @@
     background: #ffff;
 }
 
-#registerForm  button, #loginForm button, #logoutBtn, #topicsContainer button, #submitBtn {
+#registerForm  button, #loginForm button, #logoutBtn, #topicsContainer button, #submitBtn, #prevBtn, #nextBtn  {
     padding: 0.5rem 1.5rem;
     background: rgb(95, 179, 65);
     color: #fff;
@@ -18,6 +18,6 @@
     transition: background 0.3s ease;
 }
 
-#registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover, #topicsContainer button:hover, #submitBtn:hover {
+#registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover, #topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover {
     background: rgb(225, 68, 60);
 }
