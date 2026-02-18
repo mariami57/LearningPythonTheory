@@ -1,4 +1,6 @@
 import { getCSRFToken } from './utils.js';
+import { handlePaginationButtons } from './pagination.js';
+import { updatePaginationInfo } from './pagination.js';
 
 const topicEl = document.getElementById('topicTitle');
 const topicId = parseInt(topicEl.dataset.topicId, 10);
@@ -12,10 +14,10 @@ let allResults = {};
 let userAnswers = {};
 let currentPageUrl = QUESTIONS_URL;
 
+
+
 const container = document.getElementById('quiz');
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
-const submitBtn = document.getElementById('submitBtn');
+
 
 // Load questions from API
 async function loadQuestions(url) {
@@ -24,12 +26,17 @@ async function loadQuestions(url) {
         if (!res.ok) throw new Error("Failed to load questions");
 
         const data = await res.json();
+
+
         currentPageQuestions = data.results;
 
         currentPageQuestions.forEach(q => allQuestions[q.id] = q);
         renderQuestions(currentPageQuestions, allResults);
-        handlePaginationButtons(data);
+        handlePaginationButtons(data, loadQuestions);
         currentPageUrl = url;
+
+        updatePaginationInfo(data, url);
+
 
 
     } catch (err) {
@@ -104,7 +111,7 @@ function renderQuestions(questions, results = {}) {
         else {
             const textarea = document.createElement('textarea');
             textarea.rows = 4;
-            textarea.style.width = '100%';
+            textarea.className = 'w-full';
             textarea.value = userAnswers[q.id]?.text_answer || '';
 
             textarea.addEventListener('input', () => {
@@ -142,37 +149,7 @@ function renderQuestions(questions, results = {}) {
     });
 }
 
-function handlePaginationButtons(data) {
 
-        if (nextBtn) {
-            if (data.next) {
-                nextBtn.classList.remove('hidden');
-                nextBtn.onclick = () => loadQuestions(data.next);
-
-            } else {
-                nextBtn.classList.add('hidden');
-            }
-        }
-
-        if (prevBtn) {
-            if (data.previous) {
-                prevBtn.classList.remove('hidden');
-                 prevBtn.onclick = () =>  loadQuestions(data.previous);
-            } else {
-                prevBtn.classList.add('hidden');
-
-            }
-        }
-
-        if (submitBtn) {
-            if (!data.next) {
-                submitBtn.classList.remove('hidden');
-            } else {
-               submitBtn.classList.add('hidden');
-            }
-        }
-
-}
 
 
 // Submit all answers
