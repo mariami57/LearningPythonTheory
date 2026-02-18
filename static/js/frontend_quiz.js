@@ -6,9 +6,16 @@ const topicId = parseInt(topicEl.dataset.topicId, 10);
 const QUESTIONS_URL = `/topic/${topicId}/questions/`;
 const SUBMIT_URL = `/topic/${topicId}/submit/`;
 
-let questions = [];
+let allQuestions = {};
+let currentPageQuestions = [];
+let allResults = {};
 let userAnswers = {};
 let currentPageUrl = QUESTIONS_URL;
+
+const container = document.getElementById('quiz');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const submitBtn = document.getElementById('submitBtn');
 
 // Load questions from API
 async function loadQuestions(url) {
@@ -17,46 +24,14 @@ async function loadQuestions(url) {
         if (!res.ok) throw new Error("Failed to load questions");
 
         const data = await res.json();
+        currentPageQuestions = data.results;
 
-        questions = data.results;
-        renderQuestions(questions);
-
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-
-        nextBtn.disabled =!data.next;
-        prevBtn.disabled =!data.previous;
-
-
-        if (nextBtn) {
-            if (data.next) {
-                nextBtn.classList.remove('hidden');
-                nextBtn.onclick = () => loadQuestions(data.next);
-
-            } else {
-                nextBtn.classList.add('hidden');
-            }
-        }
-
-        if (prevBtn) {
-            if (data.previous) {
-                prevBtn.classList.remove('hidden');
-                 prevBtn.onclick = () =>  loadQuestions(data.previous);
-            } else {
-                prevBtn.classList.add('hidden');
-
-            }
-        }
-
-        if (submitBtn) {
-            if (!data.next) {
-                submitBtn.classList.remove('hidden');
-            } else {
-               submitBtn.classList.add('hidden');
-            }
-        }
-
+        currentPageQuestions.forEach(q => allQuestions[q.id] = q);
+        renderQuestions(currentPageQuestions, allResults);
+        handlePaginationButtons(data);
         currentPageUrl = url;
+
+
     } catch (err) {
         console.error(err);
         alert("Failed to load questions after pagination")
@@ -65,9 +40,8 @@ async function loadQuestions(url) {
 }
 
 // Render questions
-function renderQuestions(questions, results = null) {
+function renderQuestions(questions, results = {}) {
 
-    const container = document.getElementById('quiz');
     container.innerHTML = '';
 
     if (!questions || questions.length === 0) {
@@ -168,45 +142,82 @@ function renderQuestions(questions, results = null) {
     });
 }
 
-// Submit all answers
-document.getElementById('submitBtn').addEventListener('click', async () => {
-    const payload = {
-        answers: Object.entries(userAnswers).map(([qid, data]) => ({
-            question_id: parseInt(qid),
-            ...data
-        }))
-    };
+function handlePaginationButtons(data) {
 
-    console.log("Submitting payload:", payload);
+        if (nextBtn) {
+            if (data.next) {
+                nextBtn.classList.remove('hidden');
+                nextBtn.onclick = () => loadQuestions(data.next);
 
-       try {
-        const res = await fetch(SUBMIT_URL, {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken()
-            },
-            body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) {
-            const text = await res.text();
-            console.error("Submission failed:", text);
-            alert("Submission failed");
-            return;
+            } else {
+                nextBtn.classList.add('hidden');
+            }
         }
 
-        const resultData = await res.json();
-//        console.log("Server returned results:", resultData);
-        renderQuestions(questions, resultData);
+        if (prevBtn) {
+            if (data.previous) {
+                prevBtn.classList.remove('hidden');
+                 prevBtn.onclick = () =>  loadQuestions(data.previous);
+            } else {
+                prevBtn.classList.add('hidden');
 
-    } catch (err) {
-        console.error(err);
-        alert("An error occurred while submitting.");
-    }
+            }
+        }
 
-});
+        if (submitBtn) {
+            if (!data.next) {
+                submitBtn.classList.remove('hidden');
+            } else {
+               submitBtn.classList.add('hidden');
+            }
+        }
+
+}
+
+
+// Submit all answers
+if (submitBtn) {
+    submitBtn.addEventListener('click', async () => {
+        const payload = {
+            answers: Object.entries(userAnswers).map(([qid, data]) => ({
+                question_id: parseInt(qid),
+                ...data
+            }))
+        };
+
+        console.log("Submitting payload:", payload);
+
+           try {
+            const res = await fetch(SUBMIT_URL, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+                const text = await res.text();
+                console.error("Submission failed:", text);
+                alert("Submission failed");
+                return;
+            }
+
+            const resultData = await res.json();
+    //        console.log("Server returned results:", resultData);
+            allResults = resultData.results;
+            renderQuestions(currentPageQuestions, allResults);
+
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred while submitting.");
+        }
+
+    });
+}
+
 
 // Helper to get CSRF token
 
