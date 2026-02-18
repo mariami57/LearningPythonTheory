@@ -27,13 +27,34 @@ async function loadQuestions(url) {
         nextBtn.disabled =!data.next;
         prevBtn.disabled =!data.previous;
 
-        nextBtn.onclick = () => {
-            if (data.next) loadQuestions(data.next);
-        };
 
-            prevBtn.onclick = () => {
-            if (data.previous) loadQuestions(data.previous);
-        };
+        if (nextBtn) {
+            if (data.next) {
+                nextBtn.classList.remove('hidden');
+                nextBtn.onclick = () => loadQuestions(data.next);
+
+            } else {
+                nextBtn.classList.add('hidden');
+            }
+        }
+
+        if (prevBtn) {
+            if (data.previous) {
+                prevBtn.classList.remove('hidden');
+                 prevBtn.onclick = () =>  loadQuestions(data.previous);
+            } else {
+                prevBtn.classList.add('hidden');
+
+            }
+        }
+
+        if (submitBtn) {
+            if (!data.next) {
+                submitBtn.classList.remove('hidden');
+            } else {
+               submitBtn.classList.add('hidden');
+            }
+        }
 
         currentPageUrl = url;
     } catch (err) {
