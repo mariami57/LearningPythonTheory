@@ -15,6 +15,7 @@ let currentPageUrl = QUESTIONS_URL;
 
 let unansweredQuestionsIds = new Set();
 
+
 const container = document.getElementById('quiz');
 const submitBtn = document.getElementById('submitBtn');
 
@@ -140,7 +141,7 @@ function renderQuestions(questions, results) {
 if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
        const pageSize = 5;
-       if (!checkForUnansweredQuestions(userAnswers, allQuestions)) {
+       if (!checkForUnansweredQuestions(userAnswers, allQuestions, pageSize)) {
            renderQuestions(currentPageQuestions, allResults);
            return;
        }
@@ -186,21 +187,30 @@ if (submitBtn) {
 
 loadQuestions(QUESTIONS_URL);
 
-export function checkForUnansweredQuestions(userAnswers, allQuestions) {
+export function checkForUnansweredQuestions(userAnswers, allQuestions, pageSize) {
     unansweredQuestionsIds.clear();
 
-    Object.values(allQuestions).forEach(q => {
+    const questionIds = Object.keys(allQuestions).map(id => parseInt(id)).sort((a,b)=> a - b);
+
+    const pagesWithMissing = new Set();
+
+    questionIds.forEach((id, index) => {
+        const q = allQuestions[id];
         const answer = userAnswers[q.id];
 
         const isUnanswered = q.choices && q.choices.length > 0 ? !answer || answer.choice_id == null : !answer || !answer.text_answer?.trim();
 
         if (isUnanswered) {
-            unansweredQuestionsIds.add(q.id);
+            unansweredQuestionsIds.add(id);
+
+            const pageNumber = Math.ceil((index + 1 ) / pageSize);
+            pagesWithMissing.add(pageNumber);
         }
     });
 
-    if (unansweredQuestionsIds.size > 0) {
-        alert("Some questions are unanswered. Please review them.");
+    if (pagesWithMissing.size > 0) {
+        const pagesList = [...pagesWithMissing].sort((a,b) => a - b)
+        alert(`You have unanswered questions on page(s): ${pagesList.join(', ')}`);
         return false;
     }
 

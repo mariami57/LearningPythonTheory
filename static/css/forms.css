@@ -7,7 +7,9 @@
     background: #ffff;
 }
 
-#registerForm  button, #loginForm button, #logoutBtn, #topicsContainer button, #submitBtn, #prevBtn, #nextBtn  {
+#registerForm  button, #loginForm button, #logoutBtn,
+#topicsContainer button, #submitBtn, #prevBtn, #nextBtn,
+#prevBtn2, #nextBtn2  {
     padding: 0.5rem 1.5rem;
     background: rgb(95, 179, 65);
     color: #fff;
@@ -18,6 +20,7 @@
     transition: background 0.3s ease;
 }
 
-#registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover, #topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover {
+#registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover,
+#topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover, #prevBtn2:hover, #nextBtn2:hover {
     background: rgb(225, 68, 60);
 }

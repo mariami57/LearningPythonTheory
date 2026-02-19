@@ -7,6 +7,8 @@ export function handlePaginationButtons(data, loadQuestions) {
 
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
+    const nextBtn2 = document.getElementById('nextBtn2');
+    const prevBtn2 = document.getElementById('prevBtn2');
     const submitBtn = document.getElementById('submitBtn');
 
     if (nextBtn) {
@@ -25,6 +27,26 @@ export function handlePaginationButtons(data, loadQuestions) {
              prevBtn.onclick = () =>  loadQuestions(data.previous);
         } else {
             prevBtn.classList.add('hidden');
+
+        }
+    }
+
+     if (nextBtn2) {
+        if (data.next) {
+            nextBtn2.classList.remove('hidden');
+            nextBtn2.onclick = () => loadQuestions(data.next);
+
+        } else {
+            nextBtn2.classList.add('hidden');
+        }
+    }
+
+    if (prevBtn2) {
+        if (data.previous) {
+            prevBtn2.classList.remove('hidden');
+             prevBtn2.onclick = () =>  loadQuestions(data.previous);
+        } else {
+            prevBtn2.classList.add('hidden');
 
         }
     }
