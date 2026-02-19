@@ -6,9 +6,18 @@
     <div id="quizInfo" class="font-semibold mb-4"></div>
 
     <div class="buttons fmt-6 space-y-4">
-        <div class="pagination flex w-full">
-            <button id="prevBtn2" class="hidden mr-auto mb-2">Previous</button>
-            <button id="nextBtn2" class="hidden ml-auto mb-2">Next</button>
+        <div class="pagination flex w-full items-center">
+            <div class="flex-1">
+                 <button id="prevBtn2" class="hidden">Previous</button>
+            </div>
+
+            <div class="flex-1 flex justify-center">
+                <div class="pageNumbers flex gap-2"></div>
+            </div>
+            <div class="flex-1 flex justify-end">
+                <button id="nextBtn2" class="hidden">Next</button>
+            </div>
+
         </div>
 
     </div>
@@ -22,7 +31,7 @@
             </div>
 
             <div class="flex-1 flex justify-center">
-                <div id="pageNumbers" class="flex gap-2"></div>
+                <div class="pageNumbers flex gap-2"></div>
             </div>
             <div class="flex-1 flex justify-end">
                 <button id="nextBtn" class="hidden">Next</button>

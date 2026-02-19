@@ -99,25 +99,28 @@ export function updateQuizInfo(totalQuestions) {
 
 export function renderPageNumbers(totalPages, currentPage, loadQuestions, baseUrl) {
     console.log("Rendering page numbers...");
-    const pageContainer = document.getElementById('pageNumbers');
-    if (!pageContainer) return;
+    const containers = document.querySelectorAll('.pageNumbers');
 
-    pageContainer.replaceChildren();
+    if (!containers.length) return;
 
-    for (let i=1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
+    containers.forEach(container => container.replaceChildren());
 
-        if (i === currentPage) {
-            btn.classList.add('active-page');
-        }
+    for (let i = 1; i <= totalPages; i++) {
+        containers.forEach(container => {
+            const btn = document.createElement('button');
+            btn.textContent = i;
 
-        btn.addEventListener('click', () => {
-            const url = new URL(baseUrl, window.location.origin);
-            url.searchParams.set('page', i);
-            loadQuestions(url.toString());
+            if (i === currentPage) {
+                btn.classList.add('active-page');
+            }
+
+            btn.addEventListener('click', () => {
+                const url = new URL(baseUrl, window.location.origin);
+                url.searchParams.set('page', i);
+                loadQuestions(url.toString());
+            });
+
+            container.appendChild(btn);
         });
-
-        pageContainer.appendChild(btn);
     }
 }
