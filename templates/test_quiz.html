@@ -16,16 +16,25 @@
     <div id="quiz"></div>
 
     <div class="buttons fmt-6 space-y-4">
-        <div class="pagination flex w-full">
-            <button id="prevBtn" class="hidden mr-auto">Previous</button>
-            <button id="nextBtn" class="hidden ml-auto">Next</button>
+        <div class="pagination flex w-full items-center">
+            <div class="flex-1">
+                 <button id="prevBtn" class="hidden">Previous</button>
+            </div>
+
+            <div class="flex-1 flex justify-center">
+                <div id="pageNumbers" class="flex gap-2"></div>
+            </div>
+            <div class="flex-1 flex justify-end">
+                <button id="nextBtn" class="hidden">Next</button>
+            </div>
+
         </div>
         <div class="flex justify-center">
             <button id="submitBtn" class="hidden py-2 px-4">Submit answers</button>
         </div>
 
     </div>
-    <div id="pageNumbers"></div>
+
 
     <script type="module" src="{% static 'js/frontend_quiz.js' %}">
 
