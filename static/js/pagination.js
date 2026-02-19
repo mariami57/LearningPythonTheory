@@ -71,7 +71,7 @@ export function updatePaginationInfo(data, url) {
     const pageParam = urlObj.searchParams.get('page');
     currentPage = pageParam ? parseInt(pageParam) : 1;
 
-    return currentPage;
+    return {totalPages, currentPage };
 
 
 }
@@ -95,4 +95,29 @@ export function updateQuizInfo(totalQuestions) {
     infoDiv.appendChild(infoTotalQuestionsP);
     infoDiv.appendChild(infoPageP);
 
+}
+
+export function renderPageNumbers(totalPages, currentPage, loadQuestions, baseUrl) {
+    console.log("Rendering page numbers...");
+    const pageContainer = document.getElementById('pageNumbers');
+    if (!pageContainer) return;
+
+    pageContainer.replaceChildren();
+
+    for (let i=1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+
+        if (i === currentPage) {
+            btn.classList.add('active-page');
+        }
+
+        btn.addEventListener('click', () => {
+            const url = new URL(baseUrl, window.location.origin);
+            url.searchParams.set('page', i);
+            loadQuestions(url.toString());
+        });
+
+        pageContainer.appendChild(btn);
+    }
 }

@@ -1,5 +1,5 @@
 import { getCSRFToken } from './utils.js';
-import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage } from './pagination.js';
+import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage, renderPageNumbers  } from './pagination.js';
 
 const topicEl = document.getElementById('topicTitle');
 const topicId = parseInt(topicEl.dataset.topicId, 10);
@@ -34,8 +34,9 @@ async function loadQuestions(url) {
 
         renderQuestions(currentPageQuestions, allResults);
 
-        const page = updatePaginationInfo(data, url);
-        updateQuizInfo(data.count);
+        const { totalPages, currentPage } = updatePaginationInfo(data, url);
+        updateQuizInfo(data.count, totalPages, currentPage);
+        renderPageNumbers(totalPages, currentPage, loadQuestions, QUESTIONS_URL);
 
 
         handlePaginationButtons(data, loadQuestions, userAnswers);
