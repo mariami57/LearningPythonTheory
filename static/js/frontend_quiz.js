@@ -1,4 +1,4 @@
-import { getCSRFToken, checkForUnansweredQuestions } from './utils.js';
+import { getCSRFToken } from './utils.js';
 import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage } from './pagination.js';
 
 const topicEl = document.getElementById('topicTitle');
@@ -12,6 +12,8 @@ let currentPageQuestions = [];
 let allResults = {};
 let userAnswers = {};
 let currentPageUrl = QUESTIONS_URL;
+
+let unansweredQuestionsIds = new Set();
 
 const container = document.getElementById('quiz');
 const submitBtn = document.getElementById('submitBtn');
@@ -54,10 +56,14 @@ function renderQuestions(questions, results) {
         return;
     }
 
-    questions.forEach((q, idx) => {
+    questions.forEach(q => {
         const qDiv = document.createElement('div');
         qDiv.className = 'question';
         qDiv.dataset.id = q.id;
+
+        if (unansweredQuestionsIds.has(q.id)){
+            qDiv.classList.add('incorrect');
+        }
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
 
         // Closed questions
@@ -134,7 +140,10 @@ function renderQuestions(questions, results) {
 if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
        const pageSize = 5;
-       if (!checkForUnansweredQuestions(userAnswers, allQuestions, pageSize)) return;
+       if (!checkForUnansweredQuestions(userAnswers, allQuestions)) {
+           renderQuestions(currentPageQuestions, allResults);
+           return;
+       }
 
         const payload = {
             answers: Object.entries(userAnswers).map(([qid, data]) => ({
@@ -176,3 +185,25 @@ if (submitBtn) {
 
 
 loadQuestions(QUESTIONS_URL);
+
+export function checkForUnansweredQuestions(userAnswers, allQuestions) {
+    unansweredQuestionsIds.clear();
+
+    Object.values(allQuestions).forEach(q => {
+        const answer = userAnswers[q.id];
+
+        const isUnanswered = q.choices && q.choices.length > 0 ? !answer || answer.choice_id == null : !answer || !answer.text_answer?.trim();
+
+        if (isUnanswered) {
+            unansweredQuestionsIds.add(q.id);
+        }
+    });
+
+    if (unansweredQuestionsIds.size > 0) {
+        alert("Some questions are unanswered. Please review them.");
+        return false;
+    }
+
+    return true;
+
+}

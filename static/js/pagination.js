@@ -1,4 +1,4 @@
-import { checkForUnansweredQuestions } from './utils.js';
+import { checkForUnansweredQuestions } from './frontend_quiz.js';
 
 export let currentPage = 1;
 export let totalPages = 1;
