@@ -14,6 +14,8 @@ let userAnswers = {};
 let currentPageUrl = QUESTIONS_URL;
 
 let unansweredQuestionsIds = new Set();
+let correctClosedEnds = 0
+let scoreOpenEnds = 0
 
 
 const container = document.getElementById('quiz');
@@ -87,7 +89,9 @@ function renderQuestions(questions, results) {
 
                 const r = results[q.id];
                 if (r) {
-                    if (choice.id === r.correct_choice_id) textSpan.classList.add("correct-choice");
+                    if (choice.id === r.correct_choice_id) {
+                        textSpan.classList.add("correct-choice");
+                    }
                     if (!r.correct && choice.id === userAnswers[q.id]?.choice_id) textSpan.classList.add("wrong-choice");
                 }
 
@@ -115,10 +119,11 @@ function renderQuestions(questions, results) {
 
             const r = results[q.id];
             if (r) {
-                const score = document.createElement('div');
-                score.className = 'feedback';
-                score.textContent = `Score: ${r.score}`;
-                qDiv.appendChild(score);
+                const score = r.score;
+                const scoreDiv = document.createElement('div');
+                scoreDiv.className = 'feedback';
+                scoreDiv.textContent = `Score: ${r.score}`;
+                qDiv.appendChild(scoreDiv);
 
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback';
@@ -146,7 +151,6 @@ if (submitBtn) {
            renderQuestions(currentPageQuestions, allResults);
            return;
        }
-
         const payload = {
             answers: Object.entries(userAnswers).map(([qid, data]) => ({
                 question_id: parseInt(qid),
@@ -177,6 +181,11 @@ if (submitBtn) {
 
 
             renderQuestions(currentPageQuestions, allResults);
+            const {earnedPoints, totalPoints} = calculateScore(allResults, allQuestions);
+
+
+            alert(`You scored ${earnedPoints} out of ${totalPoints} points.`)
+
 
         } catch (err) {
             console.error(err);
@@ -217,4 +226,27 @@ export function checkForUnansweredQuestions(userAnswers, allQuestions, pageSize)
 
     return true;
 
+}
+
+function calculateScore(allResults, allQuestions) {
+    let earnedPoints = 0;
+    let totalPoints = 0;
+
+    Object.values(allQuestions).forEach(q => {
+        const result = allResults[q.id];
+        if (!result) return;
+
+        if (q.choices && q.choices.length > 0 ) {
+            totalPoints += 1;
+            if (result.correct) {
+                earnedPoints += 1;
+            }
+        } else {
+            totalPoints += 10;
+            earnedPoints += result.score || 0 ;
+
+        }
+    });
+
+    return { earnedPoints, totalPoints };
 }
