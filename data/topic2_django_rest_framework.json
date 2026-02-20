@@ -1,0 +1,101 @@
+{
+  "topic_id": 2,
+  "questions": [
+    {
+      "text": "Which of the below is NOT correct when it comes to the definition of an API?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "An API stands for Application Programming Interface", "is_correct": false },
+        { "text": "Serves as an intermediary", "is_correct": false },
+        { "text": "Acts as the connection between systems", "is_correct": true },
+        { "text": "Defines how different software components or systems can interact with each other", "is_correct": false },
+        { "text": "Outlines the methods and protocols through which one system can communicate with another", "is_correct": false }
+      ]
+    },
+    {
+      "text": "What is an API?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "An API stands for Application Programming Interface. It defines how different software components or systems can interact with each other.",
+      "key_points": ["different systems", "Application Programming Interface", "defines", "interact"]
+    },
+
+    {
+      "text": "Which of the below is NOT correct when it comes to the definition of REST?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "REST stands for Representational State Transfer", "is_correct": false },
+        { "text": "It is an architectural style for designing networked applications", "is_correct": false },
+        { "text": "RESTful APIs are built based on the principles of REST", "is_correct": false },
+        { "text": "Outlines the methods and protocols through which one system can communicate with another", "is_correct": true }
+
+      ]
+    },
+
+    {
+      "text": "What does the 'Representational' part of REST stands for?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Representing the state of the program", "is_correct": false },
+        { "text": "Representing the state of the Python data we return", "is_correct": false },
+        { "text": "Representing the Python data in a specific format (can be json, xml, etc.) when we return it", "is_correct": true },
+        { "text": "Representing the API`s main functions", "is_correct": false }
+
+      ]
+    },
+    {
+      "text": "How do we transfer the data when using REST?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Using HTTP requests", "is_correct": true },
+        { "text": "Using APIs", "is_correct": false },
+        { "text": "Using json", "is_correct": false },
+        { "text": "All of the above", "is_correct": false }
+
+      ]
+    },
+
+    {
+      "text": "What is the difference between MPA (Multi-Page Application) and SPA(Single-Page Application)?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "An MPA uses only JavaScript for rendering content, whereas an SPA does not use JavaScript at all.", "is_correct": false },
+        { "text": "An MPA can only connect to one database, while an SPA can connect to multiple databases at the same time.", "is_correct": false },
+        { "text": "An MPA reloads the entire page from the server for each new request or navigation, while an SPA loads a single HTML page and dynamically updates content in the browser without full page reloads.", "is_correct": true },
+        { "text": "An MPA is designed only for mobile devices, while an SPA is designed only for desktop browsers.", "is_correct": false }
+
+      ]
+    },
+
+    {
+      "text": "Which of the following is part of the key principles of  RESTful APIs?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "RESTful APIs follow a client-server architecture - the client sends requests to the server, and the server processes those requests and sends back responses", "is_correct": false },
+        { "text": "RESTful APIs are stateless - each request from a client to the server must contain all the necessary information to understand and process the request. The server does not store any client state between requests ", "is_correct": false },
+        { "text": "RESTful APIs have a uniform interface - This includes using standard HTTP methods to perform actions on resources and using standard HTTP status codes to indicate the outcome of a request", "is_correct": false },
+        { "text": "In RESTful APIs, everything is treated as a resource, which can be accessed and manipulated using standard HTTP methods", "is_correct": false },
+        { "text": "Resources in RESTful APIs are represented in different formats", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+
+      ]
+    },
+
+    {
+      "text": "Why do we still need to use MPA?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Because MPA have better SEO.",
+      "key_points": ["MPA", "SEO", "better"]
+    },
+
+  ]
+}
