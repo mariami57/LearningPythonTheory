@@ -67,6 +67,7 @@ function renderQuestions(questions, results) {
 
         if (unansweredQuestionsIds.has(q.id)){
             qDiv.classList.add('incorrect');
+
         }
         qDiv.innerHTML = `<h3>${q.text}</h3>`;
 
@@ -91,8 +92,12 @@ function renderQuestions(questions, results) {
                 if (r) {
                     if (choice.id === r.correct_choice_id) {
                         textSpan.classList.add("correct-choice");
+                        qDiv.classList.add("correct");
                     }
-                    if (!r.correct && choice.id === userAnswers[q.id]?.choice_id) textSpan.classList.add("wrong-choice");
+                    if (!r.correct && choice.id === userAnswers[q.id]?.choice_id) {
+                        textSpan.classList.add("wrong-choice");
+                        qDiv.classList.add("incorrect");
+                    }
                 }
 
                 input.addEventListener('change', () => {
