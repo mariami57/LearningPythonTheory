@@ -18,8 +18,6 @@ async function loadTopics() {
     if (topics && topics.length > 0) {
         topics.forEach(topic => {
             const div = document.createElement('div');
-
-
             div.className = 'topic flex items-center justify-between p-4 border-2 border-green-500 rounded-lg w-full bg-gray-50';
 
             const topicTitle = document.createElement('h3');

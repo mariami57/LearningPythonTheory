@@ -36,7 +36,7 @@
     },
 
     {
-      "text": "What does the 'Representational' part of REST stands for?",
+      "text": "What does the 'Representational' part of REST stand for?",
       "question_type": "closed",
       "difficulty": 1,
       "choices": [
@@ -93,9 +93,43 @@
       "question_type": "open",
       "difficulty": 1,
       "choices": [],
-      "reference_answer": "Because MPA have better SEO.",
-      "key_points": ["MPA", "SEO", "better"]
+      "reference_answer": "Because MPAs have better SEO.",
+      "key_points": ["MPAs", "SEO", "better"]
     },
 
+    {
+      "text": "Explain serializers in DRF",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Serializers in DRF facilitate the conversion of complex data structures, such as Django model instances, into native Python datatypes",
+      "key_points": ["DRF", "facilitate", "the conversion", "data structures", "into native Python datatypes"]
+    },
+
+    {
+      "text": "When do we need to use CORS headers?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "CORS only applies when making a request to a different origin.", "is_correct": true },
+        { "text": "When you are using relative URLs in your front-end", "is_correct": false },
+        { "text": "CORS applies when making a request to the same origin.", "is_correct": false },
+        { "text": "When you have the same port for both front-end and back-end", "is_correct": false }
+
+      ]
+    },
+
+    {
+      "text": "When using DRF generic views, which class attributes must be defined to connect a serializer and a model queryset?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "serializer_class, queryset", "is_correct": true },
+        { "text": "form_class, model_class", "is_correct": false },
+        { "text": "serializer, model", "is_correct": false },
+        { "text": "serializer_class, model_class", "is_correct": false }
+
+      ]
+    }
   ]
 }

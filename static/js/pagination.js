@@ -88,7 +88,7 @@ export function updateQuizInfo(totalQuestions) {
     infoTotalQuestionsP.textContent = `
         Total questions: ${totalQuestions}`
 
-     infoPageP.textContent = `
+    infoPageP.textContent = `
         Page ${currentPage} of ${totalPages}
     `
 
