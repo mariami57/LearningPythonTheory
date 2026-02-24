@@ -130,6 +130,55 @@
         { "text": "serializer_class, model_class", "is_correct": false }
 
       ]
-    }
+    },
+
+    {
+      "text": "When are nested serializers useful?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "When there are relationships between models and you need to include related data in API responses or handle nested data in API requests", "is_correct": true },
+        { "text": "When you need to validate the data of multiple models", "is_correct": false },
+        { "text": "When you are working with one model only and need to do nested validations", "is_correct": false },
+        { "text": "When you need to notify the API that there are relations between models", "is_correct": false }
+
+      ]
+    },
+
+    {
+      "text": "Which method would be best to be overridden if we use nested serializers?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "get", "is_correct": false },
+        { "text": "create", "is_correct": true },
+        { "text": "edit", "is_correct": false },
+        { "text": "delete", "is_correct": false }
+
+      ]
+    },
+
+  {
+    "text": "What is a router in Django?",
+    "question_type": "closed",
+    "difficulty": 1,
+    "choices": [
+      {"text": "A component that maps URL patterns to views so Django knows which view to execute for a given request", "is_correct": true},
+      {"text": "A class that converts Django models into JSON format", "is_correct": false},
+      {"text": "A middleware that handles authentication and permissions", "is_correct": false},
+      {"text": "A template engine used to render HTML pages dynamically", "is_correct": false}
+    ]
+  },
+    {
+    "text": "Where should the router be set up?",
+    "question_type": "closed",
+    "difficulty": 1,
+    "choices": [
+      {"text": "In the view in question", "is_correct": false},
+      {"text": "In urls.py of the app", "is_correct": true},
+      {"text": "In urls.py of the project", "is_correct": false},
+      {"text": "In the serializer for the view", "is_correct": false}
+    ]
+  }
   ]
 }

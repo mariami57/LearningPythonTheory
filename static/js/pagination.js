@@ -71,7 +71,7 @@ export function updatePaginationInfo(data, url) {
     const pageParam = urlObj.searchParams.get('page');
     currentPage = pageParam ? parseInt(pageParam) : 1;
 
-    return {totalPages, currentPage };
+    return { totalPages, currentPage };
 
 
 }
