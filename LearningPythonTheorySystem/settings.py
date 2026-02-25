@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'tailwind',
     'theme',
+    'rest_framework_simplejwt',
+    'drf_spectacular'
+
 ] + PROJECT_APPS
 
 
@@ -69,6 +72,20 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.authentication.SessionAuthentication',
     ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Learning Python theory API',
+    'DESCRIPTION': 'Learn Python theory easy',
+    'VERSION': '1.0.0',
+
 }
 
 ROOT_URLCONF = 'LearningPythonTheorySystem.urls'

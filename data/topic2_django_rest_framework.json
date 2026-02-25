@@ -19,7 +19,7 @@
       "difficulty": 1,
       "choices": [],
       "reference_answer": "An API stands for Application Programming Interface. It defines how different software components or systems can interact with each other.",
-      "key_points": ["different systems", "Application Programming Interface", "defines", "interact"]
+      "key_points": ["systems", "Application Programming Interface", "defines", "interact"]
     },
 
     {
@@ -103,7 +103,7 @@
       "difficulty": 1,
       "choices": [],
       "reference_answer": "Serializers in DRF facilitate the conversion of complex data structures, such as Django model instances, into native Python datatypes",
-      "key_points": ["DRF", "facilitate", "the conversion", "data structures", "into native Python datatypes"]
+      "key_points": ["facilitate", "the conversion", "data structures", "into native Python datatypes"]
     },
 
     {
