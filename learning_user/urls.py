@@ -6,9 +6,9 @@ from learning_user.views import RegisterView, register_view, LoginView, login_vi
 urlpatterns = [
     path('register-api/', RegisterView.as_view(), name='register'),
     path('register/', register_view, name='register_page'),
-    path('login-api/', LoginView.as_view(), name='login'),
+    # path('login-api/', LoginView.as_view(), name='login'),
     path('login/', login_view, name='login_page'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login-api/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]

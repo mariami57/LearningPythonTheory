@@ -9,22 +9,22 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     };
 
     const res = await fetch('/user/login-api/', {
-        method:'POST',
+        method: 'POST',
         headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCSRFToken(),
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),
         },
         body: JSON.stringify(formData),
-        credentials: 'include'
     });
 
+    const data = await res.json();
+
     if (res.ok) {
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+
         window.location.href = '/topic/all-topics/';
-
     } else {
-        const error = await res.json();
-        console.log(error);
+        console.log(data);
     }
-
 });
-

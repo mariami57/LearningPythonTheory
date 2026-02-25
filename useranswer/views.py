@@ -13,7 +13,6 @@ from topic.models import Topic
 from django.shortcuts import render
 
 class TopicQuestionSet(ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
     serializer_class = QuestionSerializer
     pagination_class = FiveQuestionPagination
 
@@ -22,7 +21,6 @@ class TopicQuestionSet(ListAPIView):
         return Question.objects.filter(topic_id=topic_id)
 
 class SubmitAllAnswersView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
         serializer = SubmitAllAnswerSerializer(data=request.data)

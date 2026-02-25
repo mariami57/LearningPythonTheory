@@ -1,9 +1,19 @@
 import { getCSRFToken } from './utils.js';
 
+
 async function loadTopics() {
-    const res = await fetch('/topic/topics-api/', {
-        credentials: 'include'
-    });
+     const token = localStorage.getItem('access');
+     if (!token) {
+            window.location.href = '/user/login/';
+            return;
+        }
+
+        const res = await fetch('/topic/topics-api/', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': "application/json"
+            }
+        });
 
     if (res.status === 401 || res.status === 403) {
         window.location.href = '/user/login/';
@@ -61,9 +71,9 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
     await fetch ('/user/logout/', {
         method: 'POST',
         headers: {
-            'X-CSRFToken': getCSRFToken()
-        },
-        credentials: 'include'
+            'X-CSRFToken': getCSRFToken(),
+             'Authorization': `Bearer ${token}`,
+        }
     });
 
     window.location.href = '/user/login/';

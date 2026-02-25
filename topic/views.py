@@ -10,7 +10,6 @@ from topic.serializers import TopicSerializer
 
 # Create your views here.
 class TopicViewList(ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
     serializer_class = TopicSerializer
     queryset = Topic.objects.all()
 
