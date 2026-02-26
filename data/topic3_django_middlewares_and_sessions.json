@@ -1,0 +1,98 @@
+{
+  "topic_id": 3,
+  "questions": [
+    {
+      "text": "What is a middleware?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        {"text": "A way of how different software components or systems can interact with each other", "is_correct": false},
+        {"text": "A setting that defines how requests are processed", "is_correct": false},
+        {"text": "A callable that executes before and/or after a request", "is_correct": true},
+        {"text": "An optional setting in a Django project", "is_correct": false},
+        {"text": "An outline of how a request should be processed", "is_correct": false}
+      ]
+    },
+
+    {
+      "text": "What is the order in which the middlewares are executed?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "From first to last and then from last to first",
+      "key_points": ["From first to last", "and", "from last to first"]
+    },
+
+    {
+      "text": "What is the purpose of CommonMiddleware?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Adds various HTTP headers for better security and caching",
+      "key_points": ["Adds", "HTTP headers", "better security", "caching"]
+    },
+
+    {
+      "text": "What is the purpose of CsrfViewMiddleware?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Validates the CSRF Token and its origin",
+      "key_points": ["Validates", "CSRF Token", "origin"]
+    },
+
+    {
+      "text": "What is the purpose of SessionMiddleware?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Adds the session to the request and adds the cookies to the response",
+      "key_points": ["session", "request", "cookies", "response"]
+    },
+
+    {
+      "text": "What is the purpose of SecurityMiddleware?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Helps secure your application by adding security-related headers",
+      "key_points": ["secure", "application", "security-related headers"]
+    },
+
+    {
+      "text": "What is the best place to set up a custom middleware?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        {"text": "In a middlewares.py file at the project root", "is_correct": false},
+        {"text": "In a middlewares.py file in the app folder", "is_correct": false},
+        {"text": "In a middlewares.py file in a folder called middlewares", "is_correct": false},
+        {"text": "In a middlewares.py file in the project folder where settings.py is located", "is_correct": true}
+      ]
+    },
+
+    {
+      "text": "Why are middlewares in Django similar to decorators?",
+      "question_type": "closed",
+      "difficulty": 2,
+      "choices": [
+        {"text": "Because both wrap additional functionality around a view or request/response cycle without modifying the original view code", "is_correct": true},
+        {"text": "Because both are used to define database models in Django", "is_correct": false},
+        {"text": "Because both are required to create URL patterns in Django", "is_correct": false},
+        {"text": "Because both replace the need for views in Django applications", "is_correct": false}
+      ]
+    },
+
+{
+  "text": "What are sessions in Django?",
+  "question_type": "closed",
+  "difficulty": 1,
+  "choices": [
+    {"text": "A mechanism that allows Django to store and retrieve data for each user across multiple requests", "is_correct": true},
+    {"text": "A built-in template system used to render dynamic HTML pages", "is_correct": false},
+    {"text": "A way to permanently store application configuration in the database", "is_correct": false},
+    {"text": "A method for defining URL routes in a Django project", "is_correct": false}
+  ]
+}
+  ]
+}
