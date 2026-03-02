@@ -9,7 +9,7 @@
 
 #registerForm  button, #loginForm button, #logoutBtn,
 #topicsContainer button, #submitBtn, #prevBtn, #nextBtn,
-#prevBtn2, #nextBtn2, #passwordForm button, #passwordConfirmForm button, #login-Btn{
+#prevBtn2, #nextBtn2, #passwordForm button, #passwordConfirmForm button, #login-Btn, #login-Btn2{
     padding: 0.5rem 1.5rem;
     background: rgb(95, 179, 65);
     color: #fff;
@@ -21,6 +21,7 @@
 }
 
 #registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover,
-#topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover, #prevBtn2:hover, #nextBtn2:hover, #passwordForm button:hover, #passwordConfirmForm button:hover, #login-Btn:hover {
+#topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover, #prevBtn2:hover, #nextBtn2:hover,
+#passwordForm button:hover, #passwordConfirmForm button:hover, #login-Btn:hover, #login-Btn2:hover {
     background: rgb(225, 68, 60);
 }
