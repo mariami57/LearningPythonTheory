@@ -255,3 +255,14 @@ function calculateScore(allResults, allQuestions) {
 
     return { earnedPoints, totalPoints };
 }
+
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await fetch ('/user/logout/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCSRFToken(),
+        }
+    });
+
+    window.location.href = '/user/login/';
+})

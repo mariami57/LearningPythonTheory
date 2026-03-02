@@ -93,6 +93,8 @@ SPECTACULAR_SETTINGS = {
 
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ROOT_URLCONF = 'LearningPythonTheorySystem.urls'
 
 TEMPLATES = [

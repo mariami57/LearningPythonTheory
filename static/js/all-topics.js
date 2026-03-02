@@ -72,7 +72,6 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
         method: 'POST',
         headers: {
             'X-CSRFToken': getCSRFToken(),
-             'Authorization': `Bearer ${token}`,
         }
     });
 
