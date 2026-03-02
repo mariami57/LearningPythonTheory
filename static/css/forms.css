@@ -1,4 +1,4 @@
-#registerForm input, #loginForm input{
+#registerForm input, #loginForm input, #passwordForm input{
     width: 95%;
     padding: 0.6rem;
     border: 1px solid #8dc169;
@@ -9,7 +9,7 @@
 
 #registerForm  button, #loginForm button, #logoutBtn,
 #topicsContainer button, #submitBtn, #prevBtn, #nextBtn,
-#prevBtn2, #nextBtn2  {
+#prevBtn2, #nextBtn2, #passwordForm button {
     padding: 0.5rem 1.5rem;
     background: rgb(95, 179, 65);
     color: #fff;
@@ -21,6 +21,6 @@
 }
 
 #registerForm  button:hover, #loginForm button:hover, #logoutBtn:hover,
-#topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover, #prevBtn2:hover, #nextBtn2:hover {
+#topicsContainer button:hover, #submitBtn:hover, #prevBtn:hover, #nextBtn:hover, #prevBtn2:hover, #nextBtn2:hover, #passwordForm button:hover {
     background: rgb(225, 68, 60);
 }
