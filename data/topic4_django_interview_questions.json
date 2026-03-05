@@ -1,0 +1,204 @@
+{
+  "topic_id": 4,
+  "questions": [
+        {
+      "text": "What is Django?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Django is an architecture of Python used for building websites by utilising models, regex and OOP", "is_correct": false },
+        { "text": "Django is a complex Python library that uses multiple classes and functions with high abstraction", "is_correct": false },
+        { "text": "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the MVC pattern (called MTV in Django: Model-Template-View).", "is_correct": true },
+        { "text": "Django is a database driver used in Python and other languages to connect a project with a specific non-relational databases", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is settings.py used for?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "It stores urls of all apps within a Django project", "is_correct": false },
+        { "text": "It stores the backend of a Django project, including models, views, serializers, mixins, etc.", "is_correct": false },
+        { "text": "It stores configuration for the project: database, installed apps, middleware, templates, logging, and other global settings.", "is_correct": true },
+        { "text": "There is no settings.py in a Django project", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is a Django model?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "A Python class that maps to a database table. It defines fields (columns) and behavior (methods)", "is_correct": true },
+        { "text": "A Python function that maps to a database table. It defines fields (columns) and behavior (methods)", "is_correct": false },
+        { "text": "A mixin that connects the project to the database", "is_correct": false },
+        { "text": "A Python class that renders html templates", "is_correct": false }
+      ]
+    },
+    {
+      "text": "What are QuerySets?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Database manipulation tools that allow you to change the database", "is_correct": false },
+        { "text": "Functions used to perform CRUD operations over the data", "is_correct": false },
+        { "text": "Lazy database queries returned by Django ORM.", "is_correct": true },
+        { "text": "The columns in a database table", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is the difference between a project and an app in Django?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Project - The entire Django web application (settings, URLs, WSGI, etc.). App - A reusable module inside the project that handles specific functionality",
+      "key_points": ["web application", "settings, URLs", "reusable module", "handles specific functionality"]
+    },
+    {
+      "text": "What is ForeignKey?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Many-to-One relationship",
+      "key_points": ["Many-to-One", "relationship"]
+    },
+
+    {
+      "text": "What is OneToOneField?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "One-to-One relationship",
+      "key_points": ["One-to-One", "relationship"]
+    },
+
+    {
+      "text": "What is ManyToManyField?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Many-to-Many relationship",
+      "key_points": ["Many-to-Many", "relationship"]
+    },
+
+    {
+      "text": "What are migrations?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Migrations are changes in the front-end of the Django project", "is_correct": false },
+        { "text": "Migrations are special settings that allow you to connect to the database", "is_correct": false },
+        { "text": "Migrations are Django’s way of propagating model changes to the database schema.", "is_correct": true },
+        { "text": "Migrations are model fields that are used for changing already applied settings", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is the difference between FBV and CBV?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "FBV → Simple functions, good for small or custom views; CBV → Class-based, reusable, supports mixins, good for CRUD-heavy apps",
+      "key_points": ["Simple functions", "small or custom views", "Class-based", "reusable", "supports mixins", "CRUD"]
+    },
+
+    {
+      "text": "What is a generic view?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Pre-built function-based views that handle common patterns to reduce boilerplate.", "is_correct": false },
+        { "text": "Custom class-based views that handle common patterns to reduce boilerplate.", "is_correct": false },
+        { "text": "Pre-built class-based views (ListView, DetailView, CreateView, UpdateView, DeleteView) that handle common patterns to reduce boilerplate.", "is_correct": true },
+        { "text": "The columns in a database table", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is the difference between forms.Form and forms.ModelForm?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Form → Manual form fields, validation; ModelForm → Auto-generated fields from a model, simplifies saving",
+      "key_points": ["Manual form fields", "validation", "Auto-generated fields", "simplifies saving"]
+    },
+
+    {
+      "text": "How do you handle form validation in Django?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Django handles the form validation udner the hood", "is_correct": false },
+        { "text": "Use clean() method for global validation and clean_fieldname() for field-specific validation", "is_correct": true },
+        { "text": "Use validation mixins or create a custom validation function", "is_correct": false },
+        { "text": "Use save() method that has included validation", "is_correct": false }
+      ]
+    },
+    {
+      "text": "How does Django authentication work?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Built-in User model, login/logout, password hashing", "is_correct": false },
+        { "text": "Middleware handles request.user", "is_correct": false },
+        { "text": "Decorators (@login_required) or mixins (LoginRequiredMixin) protect views", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+      ]
+    },
+
+    {
+      "text": "How do you enforce permissions?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Decorators: @permission_required('app.permission')", "is_correct": false },
+        { "text": "CBV mixins: PermissionRequiredMixin", "is_correct": false },
+        { "text": "Per-object permissions via django-guardian or custom logic", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+      ]
+    },
+
+    {
+      "text": "What is the difference between ViewSet and APIView?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "APIView → Single endpoint, more manual control; ViewSet → Provides CRUD automatically with routers",
+      "key_points": ["Single endpoint", "manual control", "CRUD", "routers"]
+    },
+
+    {
+      "text": "How do you handle permissions in DRF?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Use permission_classes in views",
+      "key_points": ["permission_classes"]
+    },
+    {
+      "text": "How do you write tests in Django?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Use TestCase from django.test to test models, views, forms, and serializers", "is_correct": true },
+        { "text": "Use TestCase from unittest", "is_correct": false },
+        { "text": "Use mocking to test models, views, forms, and serializers", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": false }
+      ]
+    },
+    {
+      "text": "How do you deploy Django on Azure / AWS / Heroku?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Use Gunicorn + Nginx", "is_correct":  false},
+        { "text": "Store static files on cloud storage (Azure Blob / S3)", "is_correct": false },
+        { "text": "Use managed databases", "is_correct": false },
+        { "text": "Set environment variables for secrets", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+      ]
+    }
+  ]
+}

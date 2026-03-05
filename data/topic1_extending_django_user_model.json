@@ -168,6 +168,17 @@
       "choices": [],
       "reference_answer": "Django signals provide a way to allow decoupled applications to get notified when certain events occur in a Django application.",
       "key_points": ["provide a way", "decoupled applications", "get notified", "event"]
+    },
+    {
+      "text": "How do you customize the User model?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Profile model (OneToOneField) → Good for existing projects'", "is_correct": false },
+        { "text": "Custom User model (AbstractUser) → Best for new projects", "is_correct": false },
+        { "text": "AbstractBaseUser → Advanced, full control", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": true }
+      ]
     }
   ]
 }
