@@ -1,0 +1,47 @@
+{
+  "topic_id": 5,
+  "questions": [
+        {
+      "text": "What is OOP?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Object-Oriented Programming is a paradigm based on objects that encapsulate data and behavior", "is_correct": true },
+        { "text": "Object-Oriented Programming is a Python paradigm that is based on methods and objects", "is_correct": false },
+        { "text": "Object-Oriented Programming`s four pillars are  Liskov substitution, dependency injection, inheritance and polymorphism", "is_correct": false },
+        { "text": "All answers are correct", "is_correct": false }
+      ]
+    },
+
+    {
+      "text": "What is a decorator?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "A function that can be used only within a specific class", "is_correct": false },
+        { "text": "A class that is wraps functions", "is_correct": false },
+        { "text": "A function that wraps another function to extend its behavior without modifying its code.", "is_correct": true },
+        { "text": "all answers are correct", "is_correct": false }
+      ]
+    },
+    {
+      "text": "What is Big-O notation?",
+      "question_type": "closed",
+      "difficulty": 1,
+      "choices": [
+        { "text": "Big-O describes the time or space complexity of an algorithm as input size grows", "is_correct": true },
+        { "text": "A notation used to signify a decorator", "is_correct": false },
+        { "text": "Used to describe time complexity only", "is_correct": false },
+        { "text": "Used to describe space complexity only", "is_correct": false }
+      ]
+    },
+    {
+      "text": "What is the difference between a list and a tuple in Python?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Lists are mutable; tuples are immutable. Tuples are faster and hashable, so they can be used as dictionary keys.",
+      "key_points": ["mutable", "immutable", "hashable", "dictionary keys"]
+    }
+  ]
+}
