@@ -13,7 +13,7 @@ class TopicViewList(ListAPIView):
     serializer_class = TopicSerializer
     queryset = Topic.objects.all()
 
-@login_required
+
 def topic_page(request):
     return render(request, 'topics-list.html' )
 

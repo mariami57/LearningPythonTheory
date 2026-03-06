@@ -21,6 +21,8 @@ let scoreOpenEnds = 0
 const container = document.getElementById('quiz');
 const submitBtn = document.getElementById('submitBtn');
 
+const access = localStorage.getItem("access");
+
 
 async function loadQuestions(url) {
     try {
@@ -169,7 +171,8 @@ if (submitBtn) {
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken()
+                    'X-CSRFToken': getCSRFToken(),
+                    'Authorization': `Bearer ${access}`
                 },
                 body: JSON.stringify(payload)
             });

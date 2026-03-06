@@ -94,7 +94,7 @@ class SubmitAllAnswersView(APIView):
         return Response({'results': results}, status=status.HTTP_200_OK)
 
 
-@login_required
+
 def submit_page(request, pk):
     topic = Topic.objects.get(pk=pk)
     return render(request,
