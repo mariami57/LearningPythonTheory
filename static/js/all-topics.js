@@ -1,4 +1,4 @@
-import { getCSRFToken, setAccessToken } from './utils.js';
+import { getCSRFToken, setAccessToken, logoutUser } from './utils.js';
 
 
 async function loadTopics() {
@@ -69,16 +69,7 @@ function goToTopic(topicId) {
 }
 
 document.getElementById('logoutBtn').addEventListener('click', async () => {
-    await fetch ('/user/logout/', {
-        method: 'POST',
-        credentials:'include',
-        headers: {
-            'X-CSRFToken': getCSRFToken(),
-        }
-    });
-
-    setAccessToken(null);
-    window.location.href = '/user/login/';
+    logoutUser();
 })
 
 loadTopics();

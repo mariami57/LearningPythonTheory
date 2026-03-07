@@ -60,3 +60,25 @@ export async function initAuth() {
         setAccessToken(data.access);
     }
 }
+
+
+export async function logoutUser(redirect=true) {
+    try {
+        await fetch ('/user/logout/', {
+            method: 'POST',
+            credentials:'include',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+            }
+        });
+
+        setAccessToken(null);
+        if(redirect) {
+            window.location.href = '/user/login/';
+        }
+
+    } catch(err) {
+        console.error("Logout failed", err);
+        alert("Logout failed. Please try again.");
+    }
+}

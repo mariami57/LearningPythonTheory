@@ -1,4 +1,4 @@
-import { getCSRFToken, apiFetch, initAuth, setAccessToken } from './utils.js';
+import { getCSRFToken, apiFetch, initAuth, setAccessToken, logoutUser } from './utils.js';
 import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage, renderPageNumbers  } from './pagination.js';
 
 await initAuth();
@@ -260,14 +260,10 @@ function calculateScore(allResults, allQuestions) {
 }
 
 document.getElementById('logoutBtn').addEventListener('click', async () => {
-    await fetch ('/user/logout/', {
-        method: 'POST',
-        credentials:'include',
-        headers: {
-            'X-CSRFToken': getCSRFToken(),
-        }
-    });
+    logoutUser();
+})
 
-    setAccessToken(null);
-    window.location.href = '/user/login/';
+
+document.getElementById('allTopics').addEventListener('click', () => {
+    window.location.href='/topic/all-topics/';
 })

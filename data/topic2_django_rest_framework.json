@@ -65,10 +65,10 @@
       "question_type": "closed",
       "difficulty": 1,
       "choices": [
-        { "text": "An MPA uses only JavaScript for rendering content, whereas an SPA does not use JavaScript at all.", "is_correct": false },
-        { "text": "An MPA can only connect to one database, while an SPA can connect to multiple databases at the same time.", "is_correct": false },
-        { "text": "An MPA reloads the entire page from the server for each new request or navigation, while an SPA loads a single HTML page and dynamically updates content in the browser without full page reloads.", "is_correct": true },
-        { "text": "An MPA is designed only for mobile devices, while an SPA is designed only for desktop browsers.", "is_correct": false }
+        { "text": "A MPA uses only JavaScript for rendering content, whereas a SPA does not use JavaScript at all.", "is_correct": false },
+        { "text": "A MPA can only connect to one database, while a SPA can connect to multiple databases at the same time.", "is_correct": false },
+        { "text": "A MPA reloads the entire page from the server for each new request or navigation, while a SPA loads a single HTML page and dynamically updates content in the browser without full page reloads.", "is_correct": true },
+        { "text": "A MPA is designed only for mobile devices, while a SPA is designed only for desktop browsers.", "is_correct": false }
 
       ]
     },
