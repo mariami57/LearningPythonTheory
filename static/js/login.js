@@ -1,4 +1,5 @@
-import { getCSRFToken } from './utils.js';
+import { getCSRFToken, accessToken, setAccessToken, getAccessToken } from './utils.js';
+
 
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -14,14 +15,14 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             'Content-Type': 'application/json',
             'X-CSRFToken': getCSRFToken(),
         },
+        credentials: 'include',
         body: JSON.stringify(formData),
     });
 
     const data = await res.json();
 
     if (res.ok) {
-        localStorage.setItem("access", data.access);
-        localStorage.setItem("refresh", data.refresh);
+         setAccessToken(data.access);
 
         window.location.href = '/topic/all-topics/';
     } else {

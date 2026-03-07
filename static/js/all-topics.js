@@ -1,4 +1,4 @@
-import { getCSRFToken } from './utils.js';
+import { getCSRFToken, setAccessToken } from './utils.js';
 
 
 async function loadTopics() {
@@ -10,9 +10,10 @@ async function loadTopics() {
 
         const res = await fetch('/topic/topics-api/', {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'X-CSRFToken': getCSRFToken(),
                 'Content-Type': "application/json"
-            }
+            },
+            credentials: 'include'
         });
 
     if (res.status === 401 || res.status === 403) {
@@ -70,13 +71,14 @@ function goToTopic(topicId) {
 document.getElementById('logoutBtn').addEventListener('click', async () => {
     await fetch ('/user/logout/', {
         method: 'POST',
+        credentials:'include',
         headers: {
             'X-CSRFToken': getCSRFToken(),
         }
     });
 
+    setAccessToken(null);
     window.location.href = '/user/login/';
 })
-
 
 loadTopics();

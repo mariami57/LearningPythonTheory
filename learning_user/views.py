@@ -6,6 +6,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenRefreshView
 
 from learning_user.models import LearningUser
 from learning_user.serializers import LearningUserRegistrationSerializer
@@ -41,12 +42,51 @@ class LoginView(APIView):
             key='refresh_token',
             value=str(refresh),
             httponly=True,
-            secure=True,
-            samesite='Strict',
-            max_age=3600 * 7 * 24
+            secure=False,  # change to True before deploying
+            samesite='Lax', # change to 'Strict' before deploying
+            max_age=3600 * 7 * 24,
+            path='/'
         )
 
         return response
 
 def login_view(request):
     return render(request, 'login.html')
+
+class CookieTokenRefreshView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        refresh_token =request.COOKIES.get('refresh_token')
+
+        if not refresh_token:
+            return Response({'error':'No refresh token'}, status=401)
+
+        request.data['refresh'] = refresh_token
+        response = super().post(request, *args, **kwargs)
+
+        if response.status_code == 200 and 'refresh' in response.data:
+            response.set_cookie(
+                key='refresh_token',
+                value=response.data['refresh'],
+                httponly=True,
+                secure=False,  # change to True before deploying
+                samesite='Lax',  # change to 'Strict' before deploying
+                path='/'
+            )
+        return response
+
+class LogoutView(APIView):
+    def post(self,request):
+
+        refresh = request.COOKIES.get('refresh_token')
+
+        if refresh:
+            token = RefreshToken(refresh)
+            token.blacklist()
+
+        response = Response({'message':'Successfully logged out'})
+        response.delete_cookie('refresh_token', path='/')
+
+        return response
+
+def logout_view(request):
+    return render(request, 'logout.html')

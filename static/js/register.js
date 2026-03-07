@@ -12,19 +12,19 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
    const res = await fetch('/user/register-api/', {
     method: 'POST',
+    credentials: 'include',
     headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': getCSRFToken(),
     },
     body: JSON.stringify(formData),
-    credentials: 'include'
+
    });
 
    if (res.ok) {
-    window.location.href = '/user/login';
+    window.location.href = '/user/login/';
    } else {
-    const error = await res.json();
-    console.log(error);
+    console.log(data);
    }
 
 
