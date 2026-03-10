@@ -1,0 +1,560 @@
+{
+  "topic_id": 6,
+  "questions": [
+    {
+      "text": "What is Python?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Python is a high-level, interpreted programming language known for its readability and large ecosystem of libraries.",
+      "key_points": [
+        "high-level",
+        "interpreted",
+        "readable",
+        "large ecosystem"
+      ]
+    },
+     {
+        "text": "What is OOP?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Object-Oriented Programming is a paradigm based on objects that encapsulate data and behavior. The four pillars are Encapsulation, Abstraction, Inheritance, and Polymorphism.",
+        "key_points": ["object oriented programming", "encapsulation", "abstraction", "inheritance", "polymorphism"]
+      },
+          {
+        "text": "What is a REST API?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "REST is an architectural style for designing networked applications using HTTP methods such as GET, POST, PUT, and DELETE with stateless communication.",
+        "key_points": ["rest architecture", "http methods", "stateless communication", "web services"]
+      },
+    {
+        "text": "What is the difference between a stack and a queue?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "A stack follows LIFO (Last In First Out) while a queue follows FIFO (First In First Out).",
+        "key_points": ["stack lifo", "queue fifo", "data structure"]
+      },
+      {
+        "text": "What is a hash table?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "A hash table is a data structure that maps keys to values using a hash function, providing average constant time lookup.",
+        "key_points": ["key value mapping", "hash function", "constant time lookup"]
+      },
+
+     {
+        "text": "What is normalization?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Normalization is the process of organizing database tables to reduce redundancy and improve data integrity.",
+        "key_points": ["reduce redundancy", "data integrity", "database design"]
+      },
+      {
+        "text": "What is the difference between SQL and NoSQL?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "SQL databases are relational with structured schemas and ACID compliance, while NoSQL databases are flexible, schema-less, and designed for horizontal scalability.",
+        "key_points": ["relational databases", "structured schema", "flexible schema", "horizontal scaling"]
+      },
+      {
+        "text": "What is an index in a database?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "An index is a database structure that improves query performance by allowing faster data retrieval at the cost of additional storage and slower writes.",
+        "key_points": ["faster queries", "database structure", "performance optimization"]
+      },
+      {
+        "text": "What is ACID in databases?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "ACID stands for Atomicity, Consistency, Isolation, and Durability, which guarantee reliable database transactions.",
+        "key_points": ["atomicity", "consistency", "isolation", "durability"]
+      },
+
+    {
+        "text": "What is the difference between PUT and PATCH?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "PUT replaces the entire resource while PATCH updates only part of a resource.",
+        "key_points": ["put replaces resource", "patch partial update"]
+      },
+      {
+        "text": "What is the difference between HTTP status codes 404 and 500?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "404 means the requested resource was not found, while 500 indicates an internal server error.",
+        "key_points": ["404 not found", "500 server error", "http status codes"]
+      },
+      {
+        "text": "What is JWT?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "JSON Web Token is a compact token used for authentication that contains encoded claims and can be securely transmitted between parties.",
+        "key_points": ["json web token", "authentication", "encoded claims"]
+      },
+     {
+        "text": "What is the difference between merge and rebase in Git?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Merge combines histories and creates a merge commit, while rebase rewrites commit history to produce a linear timeline.",
+        "key_points": ["merge commit", "linear history", "git history"]
+      },
+      {
+        "text": "What is a pull request?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "A pull request is a request to merge code changes from one branch into another after review.",
+        "key_points": ["code review", "merge branches", "collaboration"]
+      },
+      {
+        "text": "What is unit testing?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Unit testing is the practice of testing individual functions or components in isolation to verify their correctness.",
+        "key_points": ["test components", "isolation", "automated testing"]
+      },
+      {
+        "text": "What is mocking in testing?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Mocking replaces real dependencies with controlled fake objects to simulate behavior during tests.",
+        "key_points": ["fake objects", "simulate behavior", "testing isolation"]
+      },
+
+     {
+        "text": "What is CI/CD?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "CI/CD stands for Continuous Integration and Continuous Deployment, which automate testing, building, and deployment of software.",
+        "key_points": ["continuous integration", "continuous deployment", "automation"]
+      },
+      {
+        "text": "What is the difference between a container and a virtual machine?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Containers share the host operating system kernel, while virtual machines virtualize hardware and run separate operating systems.",
+        "key_points": ["shared kernel", "hardware virtualization", "lightweight containers"]
+      },
+    {
+      "text": "What is the difference between a list and a tuple in Python?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Lists are mutable, meaning they can be modified after creation. Tuples are immutable and cannot be changed once created.",
+      "key_points": [
+        "list mutable",
+        "tuple immutable",
+        "sequence types"
+      ]
+    },
+    {
+      "text": "What is a dictionary in Python?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A dictionary is a key-value data structure that stores mappings between unique keys and values.",
+      "key_points": [
+        "key-value",
+        "mapping",
+        "unique keys"
+      ]
+    },
+    {
+      "text": "What is a decorator?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "A decorator is a function that wraps another function to extend or modify its behavior without changing its code.",
+      "key_points": [
+        "wrap function",
+        "modify behavior",
+        "without modifying code"
+      ]
+    },
+    {
+      "text": "What is a generator in Python?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "A generator is a function that returns an iterator and yields values one at a time using the yield keyword.",
+      "key_points": [
+        "iterator",
+        "yield",
+        "lazy evaluation"
+      ]
+    },
+    {
+      "text": "What is list comprehension?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "List comprehension is a concise way to create lists using a single line expression with loops and conditions.",
+      "key_points": [
+        "compact syntax",
+        "loops",
+        "conditions"
+      ]
+    },
+    {
+      "text": "What is the difference between deep copy and shallow copy?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "A shallow copy duplicates the outer object but references the same nested objects, while a deep copy duplicates the entire object including nested objects.",
+      "key_points": [
+        "shallow copy references",
+        "deep copy duplicates",
+        "nested objects"
+      ]
+    },
+    {
+      "text": "What is exception handling in Python?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Exception handling allows programs to catch and handle runtime errors using try, except, else, and finally blocks.",
+      "key_points": [
+        "try",
+        "except",
+        "runtime errors"
+      ]
+    },
+    {
+      "text": "What is a lambda function?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A lambda function is a small anonymous function defined using the lambda keyword.",
+      "key_points": [
+        "anonymous function",
+        "lambda keyword",
+        "single expression"
+      ]
+    },
+    {
+      "text": "What is Big-O notation?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "Big-O notation describes the time or space complexity of an algorithm as input size grows.",
+      "key_points": [
+        "algorithm complexity",
+        "time complexity",
+        "space complexity"
+      ]
+    },
+    {
+      "text": "What is Django?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Django is a high-level Python web framework that enables rapid development and clean design for web applications.",
+      "key_points": [
+        "python framework",
+        "rapid development",
+        "web applications"
+      ]
+    },
+    {
+      "text": "What is the difference between a Django project and an app?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A project is the entire Django application configuration, while an app is a modular component that provides specific functionality.",
+      "key_points": [
+        "project configuration",
+        "app modular",
+        "reusable component"
+      ]
+    },
+    {
+      "text": "What is a Django model?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A Django model is a Python class that represents a database table and defines the structure of stored data.",
+      "key_points": [
+        "database table",
+        "fields",
+        "ORM mapping"
+      ]
+    },
+    {
+      "text": "What are migrations in Django?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Migrations are files that track changes in models and apply those changes to the database schema.",
+      "key_points": [
+        "schema changes",
+        "database update",
+        "model tracking"
+      ]
+    },
+    {
+      "text": "What is Django ORM?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Django ORM is a system that allows developers to interact with the database using Python objects instead of raw SQL.",
+      "key_points": [
+        "object relational mapping",
+        "python queries",
+        "database abstraction"
+      ]
+    },
+    {
+      "text": "What is a QuerySet?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A QuerySet represents a collection of database queries that can be filtered, ordered, and executed lazily.",
+      "key_points": [
+        "database queries",
+        "lazy evaluation",
+        "filtering"
+      ]
+    },
+    {
+      "text": "What is middleware in Django?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Middleware is a framework of hooks into Django’s request and response processing that allows global processing of requests.",
+      "key_points": [
+        "request processing",
+        "response processing",
+        "global hooks"
+      ]
+    },
+    {
+      "text": "What is the difference between FBV and CBV?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "Function-Based Views use simple Python functions to handle requests, while Class-Based Views use classes and support inheritance and reusable logic.",
+      "key_points": [
+        "functions",
+        "classes",
+        "inheritance",
+        "reusability"
+      ]
+    },
+    {
+      "text": "What is Django REST Framework?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "Django REST Framework is a toolkit for building RESTful APIs using Django.",
+      "key_points": [
+        "api toolkit",
+        "restful",
+        "serialization"
+      ]
+    },
+    {
+      "text": "What is a serializer in Django REST Framework?",
+      "question_type": "open",
+      "difficulty": 1,
+      "choices": [],
+      "reference_answer": "A serializer converts complex data such as Django models into JSON and validates incoming data.",
+      "key_points": [
+        "data conversion",
+        "json",
+        "validation"
+      ]
+    },
+    {
+      "text": "What is a signal in Django?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "Django signals provide a way for decoupled applications to get notified when certain actions occur.",
+      "key_points": [
+        "decoupled",
+        "notification",
+        "event system"
+      ]
+    },
+    {
+      "text": "How does authentication work in Django?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "Django authentication uses a built-in user model, authentication middleware, and session management to handle login and permissions.",
+      "key_points": [
+        "user model",
+        "middleware",
+        "sessions"
+      ]
+    },
+    {
+      "text": "How do you optimize database queries in Django?",
+      "question_type": "open",
+      "difficulty": 2,
+      "choices": [],
+      "reference_answer": "Queries can be optimized using select_related, prefetch_related, indexes, and avoiding unnecessary queries.",
+      "key_points": [
+        "select_related",
+        "prefetch_related",
+        "indexes",
+        "query optimization"
+      ]
+    },
+          {
+        "text": "What is settings.py used for?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "settings.py stores global configuration for a Django project including installed apps, middleware, database configuration, templates, and other project settings.",
+        "key_points": ["project configuration", "installed apps", "database settings", "middleware"]
+      },
+     {
+        "text": "What are ForeignKey, OneToOneField, and ManyToManyField?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "These fields define relationships between models. ForeignKey represents a many-to-one relationship, OneToOneField represents a one-to-one relationship, and ManyToManyField represents a many-to-many relationship.",
+        "key_points": ["model relationships", "foreign key", "many to many", "one to one"]
+      },
+      {
+        "text": "How do you enforce uniqueness in Django models?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Uniqueness can be enforced using unique=True on a field or by defining unique_together or UniqueConstraint in the model Meta class.",
+        "key_points": ["unique true", "unique constraint", "model validation"]
+      },
+      {
+        "text": "How do you optimize QuerySets in Django?",
+        "question_type": "open",
+        "difficulty": 3,
+        "choices": [],
+        "reference_answer": "QuerySets can be optimized using select_related for foreign keys, prefetch_related for many-to-many relationships, and values or values_list to retrieve only necessary fields.",
+        "key_points": ["select_related", "prefetch_related", "query optimization"]
+      },
+      {
+        "text": "What is a generic view in Django?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Generic views are pre-built class-based views such as ListView, DetailView, CreateView, UpdateView, and DeleteView that simplify common patterns and reduce boilerplate code.",
+        "key_points": ["generic views", "class based views", "crud operations"]
+      },
+      {
+        "text": "How do Django templates work?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Django templates separate presentation from application logic and allow rendering dynamic data using template variables, tags, and filters.",
+        "key_points": ["presentation layer", "template tags", "filters", "dynamic rendering"]
+      },
+      {
+        "text": "How do you avoid duplication in Django templates?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Template inheritance using extends and reusable components using include help reduce duplication in templates.",
+        "key_points": ["template inheritance", "include tag", "code reuse"]
+      },
+      {
+        "text": "What is the difference between forms.Form and forms.ModelForm?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "forms.Form requires manual field definitions while forms.ModelForm automatically generates form fields based on a model and can directly save model instances.",
+        "key_points": ["manual form fields", "auto generated fields", "model binding"]
+      },
+      {
+        "text": "How does Django authentication work?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Django provides a built-in authentication system with a User model, password hashing, login/logout functionality, authentication middleware, and decorators or mixins to protect views.",
+        "key_points": ["user model", "authentication middleware", "login required decorator"]
+      },
+      {
+        "text": "How do you customize the Django User model?",
+        "question_type": "open",
+        "difficulty": 3,
+        "choices": [],
+        "reference_answer": "The user model can be customized by extending AbstractUser, using AbstractBaseUser for full control, or creating a separate profile model linked with OneToOneField.",
+        "key_points": ["abstractuser", "abstractbaseuser", "profile model"]
+      },
+      {
+        "text": "How do you enforce permissions in Django?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Permissions can be enforced using decorators like permission_required, class-based view mixins like PermissionRequiredMixin, or custom permission logic.",
+        "key_points": ["permission required decorator", "permission mixin", "authorization"]
+      },
+      {
+        "text": "How do you cache in Django?",
+        "question_type": "open",
+        "difficulty": 3,
+        "choices": [],
+        "reference_answer": "Django caching can be implemented using per-view caching with cache_page, template fragment caching with cache tags, or backend caches like Redis or Memcached.",
+        "key_points": ["cache page decorator", "template fragment caching", "redis memcached"]
+      },
+
+     {
+        "text": "What is Django REST Framework?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Django REST Framework is a toolkit for building RESTful APIs in Django. It provides serializers, authentication mechanisms, viewsets, and routers.",
+        "key_points": ["rest api toolkit", "serializers", "viewsets", "api development"]
+      },
+      {
+        "text": "What is a serializer in Django REST Framework?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "A serializer converts complex data such as Django model instances into JSON and validates incoming data before saving it to the database.",
+        "key_points": ["data serialization", "json conversion", "validation"]
+      },
+      {
+        "text": "What is the difference between APIView and ViewSet?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "APIView provides more manual control over request handling while ViewSet automatically provides CRUD operations and works with routers to generate endpoints.",
+        "key_points": ["manual control", "automatic crud", "router integration"]
+      },
+      {
+        "text": "How do you handle permissions in Django REST Framework?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Permissions in DRF are handled using permission_classes in views, such as IsAuthenticated or IsAdminUser.",
+        "key_points": ["permission classes", "authentication", "api security"]
+      },
+      {
+        "text": "How do you deploy a Django application?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "Django applications are typically deployed using Gunicorn or uWSGI as the application server and Nginx as a reverse proxy. Static files are stored in cloud storage and environment variables are used for secrets.",
+        "key_points": ["gunicorn", "nginx", "static files", "environment variables"]
+      }
+  ]
+}
