@@ -1,4 +1,4 @@
-import { getCSRFToken, apiFetch, initAuth, setAccessToken, logoutUser } from './utils.js';
+import { apiFetch, getCSRFToken, saveAnswersLocally, loadAnswersLocally } from './utils.js';
 import { handlePaginationButtons, updatePaginationInfo, updateQuizInfo, currentPage, renderPageNumbers  } from './pagination.js';
 
 await initAuth();
@@ -23,6 +23,8 @@ const container = document.getElementById('quiz');
 const submitBtn = document.getElementById('submitBtn');
 
 const access = localStorage.getItem("access");
+
+let { userAnswers, allResults } = loadAnswersLocally();
 
 
 async function loadQuestions(url) {
@@ -154,52 +156,44 @@ function renderQuestions(questions, results) {
 // Submit answers
 if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
-       const pageSize = 5;
-       if (!checkForUnansweredQuestions(userAnswers, allQuestions, pageSize)) {
-           renderQuestions(currentPageQuestions, allResults);
-           return;
-       }
-        const payload = {
-            answers: Object.entries(userAnswers).map(([qid, data]) => ({
-                question_id: parseInt(qid),
-                ...data
-            }))
-        };
+    const payload = {
+        answers: Object.entries(userAnswers).map(([qid, data]) => ({
+            question_id: parseInt(qid),
+            ...data
+        }))
+    };
 
-        try {
-            const res = await apiFetch(SUBMIT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken(),
+    try {
+        const res = await apiFetch(SUBMIT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify(payload),
+        });
 
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!res.ok) {
-                const text = await res.text();
-                console.error("Submission failed:", text);
-                alert("Submission failed");
-                return;
-            }
-
-            const resultData = await res.json();
-            Object.assign(allResults, resultData.results);
-
-
-            renderQuestions(currentPageQuestions, allResults);
-            const {earnedPoints, totalPoints} = calculateScore(allResults, allQuestions);
-
-
-            alert(`You scored ${earnedPoints} out of ${totalPoints} points.`)
-
-
-        } catch (err) {
-            console.error(err);
-            alert("An error occurred while submitting.");
+        if (!res.ok) {
+            const text = await res.text();
+            console.error("Submission failed:", text);
+            alert("Submission failed");
+            return;
         }
-    });
+
+        const resultData = await res.json();
+        Object.assign(allResults, resultData.results);
+
+        saveAnswersLocally(userAnswers, allResults);
+
+        renderQuestions(currentPageQuestions, allResults);
+        const { earnedPoints, totalPoints } = calculateScore(allResults, allQuestions);
+        alert(`You scored ${earnedPoints} out of ${totalPoints} points.`);
+
+    } catch (err) {
+        console.error(err);
+        alert("An error occurred while submitting.");
+    }
+});
 }
 
 

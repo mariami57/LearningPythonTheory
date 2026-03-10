@@ -48,7 +48,7 @@
       },
 
      {
-        "text": "What is normalization?",
+        "text": "What is database normalization?",
         "question_type": "open",
         "difficulty": 1,
         "choices": [],
@@ -482,14 +482,6 @@
         "choices": [],
         "reference_answer": "forms.Form requires manual field definitions while forms.ModelForm automatically generates form fields based on a model and can directly save model instances.",
         "key_points": ["manual form fields", "auto generated fields", "model binding"]
-      },
-      {
-        "text": "How does Django authentication work?",
-        "question_type": "open",
-        "difficulty": 2,
-        "choices": [],
-        "reference_answer": "Django provides a built-in authentication system with a User model, password hashing, login/logout functionality, authentication middleware, and decorators or mixins to protect views.",
-        "key_points": ["user model", "authentication middleware", "login required decorator"]
       },
       {
         "text": "How do you customize the Django User model?",

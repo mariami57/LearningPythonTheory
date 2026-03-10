@@ -1,13 +1,92 @@
 {
-  "topic_id": 1,
+  "topic_id": 7,
   "questions": [
-    {
-      "text": "What is a signal?",
+ {
+      "text": "What is Python?",
       "question_type": "open",
       "difficulty": 1,
       "choices": [],
-      "reference_answer": "Django signals provide a way to allow decoupled applications to get notified when certain events occur in a Django application.",
-      "key_points": ["provide a way", "decoupled applications", "get notified", "event"]
-    }
+      "reference_answer": "Python is a high-level, interpreted programming language known for its readability and large ecosystem of libraries.",
+      "key_points": [
+        "high-level",
+        "interpreted",
+        "readable",
+        "large ecosystem"
+      ]
+    },
+     {
+        "text": "What is OOP?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Object-Oriented Programming is a paradigm based on objects that encapsulate data and behavior. The four pillars are Encapsulation, Abstraction, Inheritance, and Polymorphism.",
+        "key_points": ["object oriented programming", "encapsulation", "abstraction", "inheritance", "polymorphism"]
+      },
+          {
+        "text": "What is a REST API?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "REST is an architectural style for designing networked applications using HTTP methods such as GET, POST, PUT, and DELETE with stateless communication.",
+        "key_points": ["rest architecture", "http methods", "stateless communication", "web services"]
+      },
+    {
+        "text": "What is the difference between a stack and a queue?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "A stack follows LIFO (Last In First Out) while a queue follows FIFO (First In First Out).",
+        "key_points": ["stack lifo", "queue fifo", "data structure"]
+      },
+      {
+        "text": "What is a hash table?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "A hash table is a data structure that maps keys to values using a hash function, providing average constant time lookup.",
+        "key_points": ["key value mapping", "hash function", "constant time lookup"]
+      },
+
+     {
+        "text": "What is normalization?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "Normalization is the process of organizing database tables to reduce redundancy and improve data integrity.",
+        "key_points": ["reduce redundancy", "data integrity", "database design"]
+      },
+      {
+        "text": "What is the difference between SQL and NoSQL?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "SQL databases are relational with structured schemas and ACID compliance, while NoSQL databases are flexible, schema-less, and designed for horizontal scalability.",
+        "key_points": ["relational databases", "structured schema", "flexible schema", "horizontal scaling"]
+      },
+      {
+        "text": "What is an index in a database?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "An index is a database structure that improves query performance by allowing faster data retrieval at the cost of additional storage and slower writes.",
+        "key_points": ["faster queries", "database structure", "performance optimization"]
+      },
+      {
+        "text": "What is ACID in databases?",
+        "question_type": "open",
+        "difficulty": 2,
+        "choices": [],
+        "reference_answer": "ACID stands for Atomicity, Consistency, Isolation, and Durability, which guarantee reliable database transactions.",
+        "key_points": ["atomicity", "consistency", "isolation", "durability"]
+      },
+
+    {
+        "text": "What is the difference between PUT and PATCH?",
+        "question_type": "open",
+        "difficulty": 1,
+        "choices": [],
+        "reference_answer": "PUT replaces the entire resource while PATCH updates only part of a resource.",
+        "key_points": ["put replaces resource", "patch partial update"]
+      }
   ]
 }
